@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% set title = '管理' %}{% include 'head.html' %}
+</head>
+<body>
+{% include 'header.html' %}
+  <div id="content">
+
+<a name="status">
+<h2>Status</h2>
+{%- set cat = "" %}
+<form action="./" method="post">
+{%- for stt in stts %}
+  {%- if (stt[0][-3:] == 'ken' or stt[0][-3:] == 'jig') and cat != stt[0][-3:] %}
+    {%- set cat = stt[0][-3:] %}
+    {%- if cat %}<a name="status.{{stt[0][-3:]}}"><h3>{{stt[0][-3:]}}</h3>{% endif %}
+  {%- endif %}
+  <div>
+    <span class="param_name">{{stt[0]}}:</span>
+    <input class="param_val" type="text" name="{{stt[0]}}" {% if stt[1] %}value="{{stt[1]}}"{% endif %}>
+  </div>
+{%- endfor %}
+  <p>
+    <input class="button" type="submit" name="update" value="Update">
+    <input class="button" type="submit" name="clear" value="Clear">
+    <input class="button" type="reset" value="Reset">
+  </p>
+</form>
+
+<a name="job">
+<h2>Job</h2>
+<ul>
+  <li><a href="/job/page/ken/reg/admin/">/job/page/ken/reg/admin/</a></li>
+  <li><a href="/job/page/jig/reg/admin/">/job/page/jig/reg/admin/</a></li>
+</ul>
+
+  </div>
+  {% include 'footer.html' %}
+</body>
+</html>

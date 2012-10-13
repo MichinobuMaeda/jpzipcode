@@ -1,0 +1,125 @@
+body, div, p, th, td, dl, dt, dd, form, input, text, select, option,
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-family: Verdana, Geneva, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5em;
+  text-align: left;
+  font-weight: normal;
+}
+body {
+  background-color: #666;
+}
+p, dl {
+  margin: .5em .5em .5em .5em;
+}
+dd {
+  margin: 0 0 0 1.5em;
+}
+a img {
+  text-decoration: none;
+  border: none;
+}
+input.button {
+  padding: 0 .5em 0 .5em;
+}
+#header {
+  font-size: 80%;
+  padding: .25em 0 .1em 0;
+}
+#logo {
+  vertical-align: bottom;
+  height: 28px;
+  width: 28px;
+}
+h1 {
+  display: inline;
+  font-size: 140%;
+}
+#bc .link, #bc .selected, #bc .rss {
+  font-size: 120%;
+}
+h1.link a, #bc .link, #bc .rss {
+  padding: .5em .5em .25em .5em;
+  text-decoration: none;
+}
+h1.link a, #bc .link {
+  background-color: #999;
+  color: #fff;
+}
+#bc .rss {
+  background-color: #ddd;
+  color: #333;
+  text-decoration: none;
+}
+h1.selected, #bc .selected {
+  padding: .5em .5em .4em .5em;
+  background-color: #fff;
+  color: #666;
+}
+#bc .selected img, #bc a img {
+  border: none;
+  height: 24px;
+  width: 24px;
+  vertical-align: middle;
+}
+a.rss img {
+  border: none;
+  height: 14px;
+  width: 14px;
+  vertical-align: baseline;
+}
+#content {
+  font-size: 80%;
+  padding: .5em 0 .5em 0;
+  background-color: #fff;
+}
+#footer {
+  font-size: 80%;
+  color: #eee;
+  padding: .25em .5em .25em .5em;
+}
+#footer a {
+  color: #eee;
+}
+#gaelogo {
+  float: left;
+  height: 30px;
+  width: 120px;
+  margin: .25em .5em .25em .5em;
+}
+h2 {
+  padding: .1em .25em .1em .25em;
+  margin: .5em 0 .5em 0;
+  font-size: 140%;
+  background-color: #ddd;
+  color: #333;
+}
+h3 {
+  padding: .1em .5em .1em .5em;
+  margin: .25em 0 .25em 0;
+  font-size: 120%;
+  background-color: #eee;
+  color: #333;
+}
+.param_name {
+  display: inline-block;
+  width: 14em;
+  text-align: right;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+.param_val {
+  width: 48em;
+  padding: .1em .25em .1em .25em;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+.ts, .size, .digest {
+  font-family: "Lucida Console", Monaco, monospace;
+  margin: 0 .5em 0 .5em;
+  color: #900;
+}
+img.icon {
+  width: 1em;
+  height: 1em;
+}

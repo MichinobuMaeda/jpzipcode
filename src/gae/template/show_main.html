@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+{% include 'head.html' %}
+<body>
+{% include 'header.html' %}
+  <div id="content">
+
+<p><a href="/feed.rss" class="rss"><img src="/static/feed-icon-14x14.png"> RSS</a></p>
+{%- for cat in text['cat'] %}
+<h2>{{text[cat]}}</h2>
+<dl>
+  <dt>配布元</dt>
+  <dd>
+    <div class="url"><a href="{{stts['url_page_' + cat]}}">{{stts['url_page_' + cat]}}</a></div>
+    <div class="url"><a href="{{stts['url_arch_' + cat]}}">{{stts['url_arch_' + cat]}}</a></div>
+  </dd>
+</dl>
+{%- if stts['ts_arch_' + cat] %}
+{%- set ts_cat = stts['ts_arch_' + cat][:10]|replace('-', '') %}
+<p>配布元生成日時:<span class="ts">{{stts['ts_arch_' + cat]}}</span></p>
+<p>生成物更新日時:<span class="ts">{{stts['updated_' + cat]}}</span></p>
+{%- endif %}
+
+{%- for task in text['task'] %}
+
+{%- if stts['dig_' + task + '_' + cat] %}
+<h3>{{text[task]}}</h3>
+<p>
+  <a href="/download/utf8_{{cat}}-{{ts_cat}}.zip">utf8_{{cat}}-{{ts_cat}}.zip</a>
+  <span class="size">{{stts['csz_' + task + '_' + cat]}}</span>byte
+</p>
+<p>SHA1:<span class="digest">{{stts['dig_' + task + '_' + cat]}}</span></p>
+<p>
+  <span class="size">{{stts['cnt_' + task + '_' + cat]}}</span>ファイル
+  計<span class="size">{{stts['dsz_' + task + '_' + cat]}}</span>byte
+</p>
+{%- endif %}
+
+{%- endfor %}
+
+{%- endfor %}
+
+  </div>
+{% include 'footer.html' %}
+</body>
+</html>

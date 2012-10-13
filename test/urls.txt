@@ -1,0 +1,5 @@
+
+http://localhost:8999/ken.html
+http://localhost:8999/ken_all.zip
+http://localhost:8999/jig.html
+http://localhost:8999/jigyosyo.zip

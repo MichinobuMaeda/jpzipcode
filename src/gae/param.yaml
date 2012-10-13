@@ -1,0 +1,136 @@
+# Copyright 2012 Michinobu Maeda.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# All parameter names
+param_names:
+  - last_modified
+  - updated
+  - updated_ken
+  - url_page_ken
+  - checked_page_ken
+  - modified_page_ken
+  - dig_page_ken
+  - url_arch_ken
+  - checked_arch_ken
+  - modified_arch_ken
+  - dig_arch_ken
+  - ts_arch_ken
+  - key_arch_ken
+  - csz_arch_ken
+  - dsz_arch_ken
+  - cnt_arch_ken
+  - dig_utf8_ken
+  - key_utf8_ken
+  - csz_utf8_ken
+  - dsz_utf8_ken
+  - cnt_utf8_ken
+  - dig_tsv1_ken
+  - key_tsv1_ken
+  - csz_tsv1_ken
+  - dsz_tsv1_ken
+  - cnt_tsv1_ken
+  - dig_tsv2_ken
+  - key_tsv2_ken
+  - csz_tsv2_ken
+  - dsz_tsv2_ken
+  - cnt_tsv2_ken
+  - dig_tsv3_ken
+  - key_tsv3_ken
+  - csz_tsv3_ken
+  - dsz_tsv3_ken
+  - cnt_tsv3_ken
+  - updated_jig
+  - url_page_jig
+  - checked_page_jig
+  - modified_page_jig
+  - dig_page_jig
+  - url_arch_jig
+  - checked_arch_jig
+  - modified_arch_jig
+  - dig_arch_jig
+  - ts_arch_jig
+  - key_arch_jig
+  - csz_arch_jig
+  - dsz_arch_jig
+  - cnt_arch_jig
+  - dig_utf8_jig
+  - key_utf8_jig
+  - csz_utf8_jig
+  - dsz_utf8_jig
+  - cnt_utf8_jig
+  - dig_tsv1_jig
+  - key_tsv1_jig
+  - csz_tsv1_jig
+  - dsz_tsv1_jig
+  - cnt_tsv1_jig
+  - dig_tsv2_jig
+  - key_tsv2_jig
+  - csz_tsv2_jig
+  - dsz_tsv2_jig
+  - cnt_tsv2_jig
+  - dig_tsv3_jig
+  - key_tsv3_jig
+  - csz_tsv3_jig
+  - dsz_tsv3_jig
+  - cnt_tsv3_jig
+
+# initial parameters
+param_ini:
+  url_page_ken: http://www.post.japanpost.jp/zipcode/dl/kogaki-zip.html
+  url_arch_ken: http://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip
+  url_page_jig: http://www.post.japanpost.jp/zipcode/dl/jigyosyo/index-zip.html
+  url_arch_jig: http://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/jigyosyo.zip
+
+# initial parameters for test
+param_ini_test:
+  url_page_ken: http://localhost:8999/ken.html
+  url_arch_ken: http://localhost:8999/ken_all.zip
+  url_page_jig: http://localhost:8999/jig.html
+  url_arch_jig: http://localhost:8999/jigyosyo.zip
+
+# Job の実行順序
+job_succ:
+  page: arch
+  arch: utf8
+  utf8: tsv1
+  tsv1: tsv2
+  tsv2: tsv3
+  tsv3: null
+
+# Jobの依存関係
+job_prv:
+  page: null
+  arch: page
+  utf8: arch
+  tsv1: utf8
+  tsv2: tsv1
+  tsv3: tsv2
+
+# View
+view:
+  publisher: michinobumaeda@gmail.com
+  cat:
+    - ken
+    - jig
+  task:
+    - utf8
+    - tsv1
+    - tsv2
+    - tsv3
+  ken: 全県
+  jig: 事業所
+  utf8: CSV UTF-8 CRLF
+  tsv1: Tab区切り UTF-8 LF
+  tsv2: Tab区切り UTF-8 LF 1レコード1行
+  tsv3: Tab区切り UTF-8 LF 説明事項等分離

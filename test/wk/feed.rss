@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>jpzipcode</title>
+    <link>http://localhost:8080/</link>
+    <description>jpzipcode latest updates</description>
+    <language>ja-jp</language>
+    <pubDate></pubDate>
+    <lastBuildDate>Sat, 13 Oct 2012 18:45:33 JST</lastBuildDate>
+    <docs>http://localhost:8080/feed.rss</docs>
+    <generator>jpzipcode -- Google App Engine</generator>
+    <managingEditor>michinobumaeda@gmail.com</managingEditor>
+    <webMaster>michinobumaeda@gmail.com</webMaster>
+    <item>
+      <title>全県 CSV UTF-8 CRLF</title>
+      <link>http://localhost:8080/download/utf8_ken-20120827.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-27 20:11:52<br>
+生成物更新日時: 2012-10-13 18:45:02<br>
+サイズ: 2,146,258 byte<br>
+SHA1: a0ac3a11746c5f4928650791b1e2ef6c756de627<br>
+解凍後: 1 ファイル 計 18,780,643 byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:02 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_ken-20120827.zip#</guid>
+    </item>
+    <item>
+      <title>全県 Tab区切り UTF-8 LF</title>
+      <link>http://localhost:8080/download/utf8_ken-20120827.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-27 20:11:52<br>
+生成物更新日時: 2012-10-13 18:45:02<br>
+サイズ: 2,104,174 byte<br>
+SHA1: 5a950c8523943079da961cfa90d92c5996049c12<br>
+解凍後: 1 ファイル 計 16,684,118 byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:02 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_ken-20120827.zip#</guid>
+    </item>
+    <item>
+      <title>全県 Tab区切り UTF-8 LF 1レコード1行</title>
+      <link>http://localhost:8080/download/utf8_ken-20120827.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-27 20:11:52<br>
+生成物更新日時: 2012-10-13 18:45:02<br>
+サイズ: 2,101,977 byte<br>
+SHA1: 43cad68ed1fd5edca12cc129ddfd15d062434e33<br>
+解凍後: 1 ファイル 計 16,643,129 byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:02 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_ken-20120827.zip#</guid>
+    </item>
+    <item>
+      <title>全県 Tab区切り UTF-8 LF 説明事項等分離</title>
+      <link>http://localhost:8080/download/utf8_ken-20120827.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-27 20:11:52<br>
+生成物更新日時: 2012-10-13 18:45:02<br>
+サイズ: 1,722,811 byte<br>
+SHA1: 09ac22f69c2b41353591de615fad016a8809d2cc<br>
+解凍後: 3 ファイル 計 8,669,431 byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:02 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_ken-20120827.zip#</guid>
+    </item>
+    <item>
+      <title>全県 Tab区切り UTF-8 LF 都道府県コード</title>
+      <link>http://localhost:8080/download/utf8_ken-20120827.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-27 20:11:52<br>
+生成物更新日時: 2012-10-13 18:45:02<br>
+サイズ:  byte<br>
+SHA1: <br>
+解凍後:  ファイル 計  byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:02 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_ken-20120827.zip#</guid>
+    </item>
+    <item>
+      <title>全県 Tab区切り UTF-8 LF 市区町村コード</title>
+      <link>http://localhost:8080/download/utf8_ken-20120827.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-27 20:11:52<br>
+生成物更新日時: 2012-10-13 18:45:02<br>
+サイズ:  byte<br>
+SHA1: <br>
+解凍後:  ファイル 計  byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:02 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_ken-20120827.zip#</guid>
+    </item>
+    <item>
+      <title>事業所 CSV UTF-8 CRLF</title>
+      <link>http://localhost:8080/download/utf8_jig-20120829.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-29 16:16:16<br>
+生成物更新日時: 2012-10-13 18:45:33<br>
+サイズ: 874,426 byte<br>
+SHA1: 1756dc7f3798f1da4e8e7e57c5eaa9c3db3179e0<br>
+解凍後: 1 ファイル 計 4,562,737 byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:33 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_jig-20120829.zip#</guid>
+    </item>
+    <item>
+      <title>事業所 Tab区切り UTF-8 LF</title>
+      <link>http://localhost:8080/download/utf8_jig-20120829.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-29 16:16:16<br>
+生成物更新日時: 2012-10-13 18:45:33<br>
+サイズ: 851,419 byte<br>
+SHA1: 806ba158cb9f80b3b3f638a92c410054bd7fc4bf<br>
+解凍後: 1 ファイル 計 4,149,221 byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:33 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_jig-20120829.zip#</guid>
+    </item>
+    <item>
+      <title>事業所 Tab区切り UTF-8 LF 1レコード1行</title>
+      <link>http://localhost:8080/download/utf8_jig-20120829.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-29 16:16:16<br>
+生成物更新日時: 2012-10-13 18:45:33<br>
+サイズ: 851,419 byte<br>
+SHA1: 5e841347299fc594bb42c674387a0cfc2bc52004<br>
+解凍後: 1 ファイル 計 4,149,221 byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:33 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_jig-20120829.zip#</guid>
+    </item>
+    <item>
+      <title>事業所 Tab区切り UTF-8 LF 説明事項等分離</title>
+      <link>http://localhost:8080/download/utf8_jig-20120829.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-29 16:16:16<br>
+生成物更新日時: 2012-10-13 18:45:33<br>
+サイズ: 808,847 byte<br>
+SHA1: 65965e20e8e44f66a655a36e6af542c4e3af1eb1<br>
+解凍後: 3 ファイル 計 3,703,490 byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:33 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_jig-20120829.zip#</guid>
+    </item>
+    <item>
+      <title>事業所 Tab区切り UTF-8 LF 都道府県コード</title>
+      <link>http://localhost:8080/download/utf8_jig-20120829.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-29 16:16:16<br>
+生成物更新日時: 2012-10-13 18:45:33<br>
+サイズ:  byte<br>
+SHA1: <br>
+解凍後:  ファイル 計  byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:33 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_jig-20120829.zip#</guid>
+    </item>
+    <item>
+      <title>事業所 Tab区切り UTF-8 LF 市区町村コード</title>
+      <link>http://localhost:8080/download/utf8_jig-20120829.zip</link>
+      <description><![CDATA[
+配布元生成日時: 2012-08-29 16:16:16<br>
+生成物更新日時: 2012-10-13 18:45:33<br>
+サイズ:  byte<br>
+SHA1: <br>
+解凍後:  ファイル 計  byte
+      ]]></description>
+      <pubDate>Sat, 13 Oct 2012 18:45:33 JST</pubDate>
+      <guid>http://localhost:8080/download/utf8_jig-20120829.zip#</guid>
+    </item>
+  </channel>
+</rss>

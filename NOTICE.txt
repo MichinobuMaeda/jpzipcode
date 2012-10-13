@@ -1,0 +1,11 @@
+jpzipcode
+Copyright 2012 Michinobu Maeda
+
+The Feed Icon is supplied courtesy of the Mozilla Foundation
+for use in accordance with their Feed Icon Guidelines. 
+http://www.mozilla.org/foundation/feed-icon-guidelines/
+
+Minicons Free Vector Icons Pack by Webalys
+http://www.webalys.com/minicons
+is licensed under a Creative Commons Attribution 3.0 Unported License:
+http://creativecommons.org/licenses/by/3.0/deed.en_US

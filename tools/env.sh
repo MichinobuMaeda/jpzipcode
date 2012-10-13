@@ -1,0 +1,3 @@
+#!/bin/sh
+export GOOGLEAPPENGINE=$HOME/google_appengine
+export PYTHONPATH=$GOOGLEAPPENGINE:$GOOGLEAPPENGINE/lib:$GOOGLEAPPENGINE/lib/yaml/lib

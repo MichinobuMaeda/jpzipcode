@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>jpzipcode</title>
+    <link>{{ base_url }}</link>
+    <description>jpzipcode latest updates</description>
+    <language>ja-jp</language>
+    <pubDate>{{pub_date_all}}</pubDate>
+    <lastBuildDate>{{pub_date['all']}}</lastBuildDate>
+    <docs>{{ base_url }}feed.rss</docs>
+    <generator>jpzipcode -- Google App Engine</generator>
+    <managingEditor>{{text['publisher']}}</managingEditor>
+    <webMaster>{{text['publisher']}}</webMaster>
+    {%- for cat in text['cat'] %}
+    {%- if stts['ts_arch_' + cat] %}
+    {%- set ts_source = stts['ts_arch_' + cat][:10]|replace('-', '') %}
+    {%- set ts_update = stts['update_' + cat]|replace('-', '')|replace(' ', '')|replace(':', '') %}
+    {%- for task in text['task'] %}
+    <item>
+      <title>{{text[cat]}} {{text[task]}}</title>
+      <link>{{ base_url }}download/utf8_{{cat}}-{{ts_source}}.zip</link>
+      <description><![CDATA[
+配布元生成日時: {{stts['ts_arch_' + cat]}}<br>
+生成物更新日時: {{stts['updated_' + cat]}}<br>
+サイズ: {{stts['csz_' + task + '_' + cat]}} byte<br>
+SHA1: {{stts['dig_' + task + '_' + cat]}}<br>
+解凍後: {{stts['cnt_' + task + '_' + cat]}} ファイル 計 {{stts['dsz_' + task + '_' + cat]}} byte
+      ]]></description>
+      <pubDate>{{pub_date[cat]}}</pubDate>
+      <guid>{{ base_url }}download/utf8_{{cat}}-{{ts_source}}.zip#{{ts_update}}</guid>
+    </item>
+    {%- endfor %}
+    {%- endif %}
+    {%- endfor %}
+  </channel>
+</rss>

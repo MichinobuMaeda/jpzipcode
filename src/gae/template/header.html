@@ -1,0 +1,19 @@
+  <div id="header">
+    {% if title -%}
+    <h1 class="link"><a href="/"><img src="/static/logo_r.png" alt="logo" id="logo"> jpzipcode</a></h1>
+    {%- else -%}
+    <h1 class="selected"><img src="/static/logo.png" alt="logo" id="logo"> jpzipcode</h1>
+    {%- endif %}
+    <span id="bc">
+      {% if title == '著作権' -%}
+      <span class="selected"><img src="/static/pencil.png" alt="著作権"> 著作権</span>
+      {%- else -%}
+      <a href="/notice.html" class="link"><img src="/static/pencil_r.png" alt="著作権"> 著作権</a>
+      {%- endif %}
+      {% if title == '管理' -%}
+      <span class="selected"><img src="/static/lock.png" alt="管理"> 管理</span>
+      {%- else -%}
+      <a href="/admin/" class="link"><img src="/static/lock_r.png" alt="管理"> 管理</a>
+      {%- endif %}
+   </span>
+  </div>
