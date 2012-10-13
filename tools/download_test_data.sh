@@ -122,4 +122,5 @@ cat tsv2_jig.txt \
 	> test-tsvc_jig.txt
 diff test-tsvc_jig.txt tsvc_jig.txt > diff-tsvc_jig.txt
 echo "see: diff-tsvc_jig.txt"
-/usr/bin/python ${JSON_CHECKER} . > json_checker.log 2>&1
+/usr/bin/python ${JSON_CHECKER} . > json_checker.log
+echo "see: json_checker.log"

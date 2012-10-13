@@ -89,7 +89,7 @@ class JsonConverter(Task):
                 if row[2]:
                     item.append('"s":"%(v)s"' % {'v':row[2]})
                 if row[3]:
-                    if self.get_cat() == 'ken' and (row[4] or (row[5] == '階層不明')):
+                    if self.get_cat() == 'ken' and (row[4] or (row[5] == u'階層不明')):
                         item.append('"b":"%(v)s"' % {'v':row[3]})
                     else:
                         item.append('"n":"%(v)s"' % {'v':row[3]})
