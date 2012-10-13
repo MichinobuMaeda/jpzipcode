@@ -50,6 +50,11 @@ param_names:
   - csz_tsv3_ken
   - dsz_tsv3_ken
   - cnt_tsv3_ken
+  - dig_json_ken
+  - key_json_ken
+  - csz_json_ken
+  - dsz_json_ken
+  - cnt_json_ken
   - updated_jig
   - url_page_jig
   - checked_page_jig
@@ -84,6 +89,11 @@ param_names:
   - csz_tsv3_jig
   - dsz_tsv3_jig
   - cnt_tsv3_jig
+  - dig_json_jig
+  - key_json_jig
+  - csz_json_jig
+  - dsz_json_jig
+  - cnt_json_jig
 
 # initial parameters
 param_ini:
@@ -106,7 +116,8 @@ job_succ:
   utf8: tsv1
   tsv1: tsv2
   tsv2: tsv3
-  tsv3: null
+  tsv3: json
+  json: null
 
 # Jobの依存関係
 job_prv:
@@ -116,6 +127,7 @@ job_prv:
   tsv1: utf8
   tsv2: tsv1
   tsv3: tsv2
+  json: tsv3
 
 # View
 view:
@@ -128,9 +140,11 @@ view:
     - tsv1
     - tsv2
     - tsv3
+    - json
   ken: 全県
   jig: 事業所
   utf8: CSV UTF-8 CRLF
   tsv1: Tab区切り UTF-8 LF
   tsv2: Tab区切り UTF-8 LF 1レコード1行
   tsv3: Tab区切り UTF-8 LF 説明事項等分離
+  json: JSON UTF-8 LF 読み無し

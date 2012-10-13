@@ -30,9 +30,10 @@ def main():
         print args.dir + ' is not exists.'
     for root, dirs, files in os.walk(args.dir):
         for name in files:
-            print os.path.join(root, name)
-            with open(os.path.join(root, name)) as f:
-                json.load(f, 'utf-8')
+            if name.endswith('.json'):
+                print os.path.join(root, name)
+                with open(os.path.join(root, name)) as f:
+                    json.load(f, 'utf-8')
 
 if __name__ == '__main__':
     main()

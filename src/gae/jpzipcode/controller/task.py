@@ -83,21 +83,20 @@ class Task():
         blob_info = blobstore.BlobInfo(blobstore.BlobKey(key))
         zr = blob_info.open()
         zi = zipfile.ZipFile(zr, 'r')
-        if len(zi.infolist()) != 1:
+        if len(zi.infolist()) < 1:
             zi.close()
             zr.close()
             return None
+        zw = StringIO.StringIO()
+        zo = zipfile.ZipFile(zw, 'w', zipfile.ZIP_DEFLATED)
         for zip_info in zi.infolist():
-            zw = StringIO.StringIO()
-            zo = zipfile.ZipFile(zw, 'w', zipfile.ZIP_DEFLATED)
             for data in self.proc(zi, zip_info):
                 zo.writestr(data[0], data[1], zipfile.ZIP_DEFLATED)
                 dsz += len(data[1])
                 cnt += 1
-            zo.close()
             stts['dsz'] = dsz
             stts['cnt'] = cnt
-            break
+        zo.close()
         zi.close()
         zr.close()
         con = zw.getvalue()

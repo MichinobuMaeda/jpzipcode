@@ -7,10 +7,22 @@
 {% include 'header.html' %}
   <div id="content">
 
+<a name="job">
+<h2>Job</h2>
+<ul>
+  <li><a href="/job/page/ken/reg/admin/">/job/page/ken/reg/admin/</a></li>
+  <li><a href="/job/page/jig/reg/admin/">/job/page/jig/reg/admin/</a></li>
+</ul>
+
 <a name="status">
 <h2>Status</h2>
 {%- set cat = "" %}
 <form action="./" method="post">
+  <p>
+    <input class="button" type="submit" name="update" value="Update">
+    <input class="button" type="submit" name="clear" value="Clear">
+    <input class="button" type="reset" value="Reset">
+  </p>
 {%- for stt in stts %}
   {%- if (stt[0][-3:] == 'ken' or stt[0][-3:] == 'jig') and cat != stt[0][-3:] %}
     {%- set cat = stt[0][-3:] %}
@@ -21,19 +33,7 @@
     <input class="param_val" type="text" name="{{stt[0]}}" {% if stt[1] %}value="{{stt[1]}}"{% endif %}>
   </div>
 {%- endfor %}
-  <p>
-    <input class="button" type="submit" name="update" value="Update">
-    <input class="button" type="submit" name="clear" value="Clear">
-    <input class="button" type="reset" value="Reset">
-  </p>
 </form>
-
-<a name="job">
-<h2>Job</h2>
-<ul>
-  <li><a href="/job/page/ken/reg/admin/">/job/page/ken/reg/admin/</a></li>
-  <li><a href="/job/page/jig/reg/admin/">/job/page/jig/reg/admin/</a></li>
-</ul>
 
   </div>
   {% include 'footer.html' %}

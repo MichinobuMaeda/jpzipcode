@@ -26,7 +26,7 @@
 {%- if stts['dig_' + task + '_' + cat] %}
 <h3>{{text[task]}}</h3>
 <p>
-  <a href="/download/utf8_{{cat}}-{{ts_cat}}.zip">utf8_{{cat}}-{{ts_cat}}.zip</a>
+  <a href="/download/{{task}}_{{cat}}-{{ts_cat}}.zip">{{task}}_{{cat}}-{{ts_cat}}.zip</a>
   <span class="size">{{stts['csz_' + task + '_' + cat]}}</span>byte
 </p>
 <p>SHA1:<span class="digest">{{stts['dig_' + task + '_' + cat]}}</span></p>

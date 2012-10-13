@@ -1,20 +1,22 @@
 #!/bin/sh
-cd $( dirname "$0" )/../test/wk
-mv diff-tsv1_ken-tsv2_ken.txt diff-tsv1_ken-tsv2_ken.bak
-mv diff-tsv2_ken-tsv3_ken.txt diff-tsv2_ken-tsv3_ken.bak
-mv diff-tsvc_jig.txt diff-tsvc_jig.bak
-rm *.zip *.CSV *.csv *.txt *.json *.rss
+WK_DIR="`pwd`/$( dirname "$0" )/../test/wk/download"
+JSON_CHECKER="`pwd`/$( dirname "$0" )/json_files_checker.py"
+if [ -d ${WK_DIR} ] ; then rm -rf ${WK_DIR} ; fi
+mkdir -p ${WK_DIR}
+cd ${WK_DIR}
 for FILENAME in \
 	arch_ken-20120827 \
 	utf8_ken-20120827 \
 	tsv1_ken-20120827 \
 	tsv2_ken-20120827 \
 	tsv3_ken-20120827 \
+	json_ken-20120827 \
 	arch_jig-20120829 \
 	utf8_jig-20120829 \
 	tsv1_jig-20120829 \
 	tsv2_jig-20120829 \
-	tsv3_jig-20120829
+	tsv3_jig-20120829 \
+	json_jig-20120829
 do
 	echo ${FILENAME}.zip
 	if wget -q http://localhost:8080/download/${FILENAME}.zip ; then echo OK ; else echo NG ; fi
@@ -38,6 +40,8 @@ ls -l   tsv3_ken-20120827.zip
 ls -l   tsvp_ken.txt
 ls -l   tsvc_ken.txt
 ls -l   tsv3_ken.txt
+sha1sum json_ken-20120827.zip
+ls -l   json_ken-20120827.zip
 sha1sum arch_jig-20120829.zip
 ls -l   arch_jig-20120829.zip
 ls -l   JIGYOSYO.CSV
@@ -55,6 +59,8 @@ ls -l   tsv3_jig-20120829.zip
 ls -l   tsvp_jig.txt
 ls -l   tsvc_jig.txt
 ls -l   tsv3_jig.txt
+sha1sum json_jig-20120829.zip
+ls -l   json_jig-20120829.zip
 nkf -Sw8X < KEN_ALL.CSV  | perl -ne 's/〜/～/g; print' > test-KEN_ALL.CSV
 nkf -Sw8X < JIGYOSYO.CSV | perl -ne 's/〜/～/g; print' > test-JIGYOSYO.CSV
 nkf -Ww8X < utf8_ken.csv > test-utf8_ken.csv
@@ -71,7 +77,6 @@ echo tsv1_jig.txt
 if diff -q tsv1_jig.txt test-utf8_jig.txt ; then echo OK ; else echo NG ; fi
 echo tsv2_ken.txt
 diff tsv1_ken.txt tsv2_ken.txt > diff-tsv1_ken-tsv2_ken.txt
-if diff -q diff-tsv1_ken-tsv2_ken.txt diff-tsv1_ken-tsv2_ken.bak ; then echo OK ; else echo NG ; fi
 echo "see: diff-tsv1_ken-tsv2_ken.txt"
 echo tsv2_jig.txt
 if diff -q tsv1_jig.txt tsv2_jig.txt ; then echo OK ; else echo NG ; fi
@@ -89,7 +94,6 @@ cat tsv2_jig.txt \
 	> test-tsv2_jig.txt
 echo tsv3_ken.txt
 diff test-tsv2_ken.txt tsv3_ken.txt > diff-tsv2_ken-tsv3_ken.txt
-if diff -q diff-tsv2_ken-tsv3_ken.txt diff-tsv2_ken-tsv3_ken.bak ; then echo OK ; else echo NG ; fi
 echo "see: diff-tsv2_ken-tsv3_ken.txt"
 echo tsv3_jig.txt
 if diff -q tsv3_jig.txt test-tsv2_jig.txt ; then echo OK ; else echo NG ; fi
@@ -117,5 +121,5 @@ cat tsv2_jig.txt \
 	|uniq \
 	> test-tsvc_jig.txt
 diff test-tsvc_jig.txt tsvc_jig.txt > diff-tsvc_jig.txt
-if diff -q diff-tsvc_jig.txt diff-tsvc_jig.bak ; then echo OK ; else echo NG ; fi
 echo "see: diff-tsvc_jig.txt"
+/usr/bin/python ${JSON_CHECKER} . > json_checker.log 2>&1
