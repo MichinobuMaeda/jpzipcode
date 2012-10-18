@@ -119,12 +119,12 @@ def main():
         backup_and_save(arc_path, zipdata[trg_id])
     
     # ファイルを解凍する。
+    wk_dir = trg_dir + '_wk'
+    if os.path.isdir(wk_dir):
+        shutil.rmtree(wk_dir)
+    os.makedirs(wk_dir)
     for trg_id in ids:
         arc_path = os.path.join(arc_dir, '%(trg_id)s.zip' % {'trg_id':trg_id})
-        wk_dir = trg_dir + '_wk'
-        if os.path.isdir(wk_dir):
-            shutil.rmtree(wk_dir)
-        os.makedirs(wk_dir)
         z = zipfile.ZipFile(arc_path)
         z.extractall(wk_dir)
         z.close()
