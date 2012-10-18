@@ -17,7 +17,7 @@
     {%- set ts_update = stts['update_' + cat]|replace('-', '')|replace(' ', '')|replace(':', '') %}
     {%- for task in text['task'] %}
     <item>
-      <title>{{text[cat]}} {{text[task]}}</title>
+      <title>{{task}}_{{cat}}: {{text[cat]}} {{text[task]}}</title>
       <link>{{ base_url }}download/{{task}}_{{cat}}-{{ts_source}}.zip</link>
       <description><![CDATA[
 配布元生成日時: {{stts['ts_arch_' + cat]}}<br>
