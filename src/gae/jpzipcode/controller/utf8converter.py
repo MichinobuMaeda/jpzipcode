@@ -26,7 +26,7 @@ class Utf8Converter(Task):
         with zi.open(zip_info) as r:
             for line in r:
                 lines.append(unicode(line, 'ms932'))
-        yield ['utf8_%(cat)s.csv' % {'cat':self.get_cat(),},u''.join(lines).encode('utf-8')]
+        yield ['uc_%(cat)s.csv' % {'cat':self.get_cat(),},u''.join(lines).encode('utf8')]
 
     def get_ext(self):
         return 'csv'

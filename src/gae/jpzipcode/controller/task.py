@@ -55,7 +55,7 @@ class Task():
         }
         
     def get_ts(self):
-        return self.__stt.get('ts_arch_%(cat)s' % {'cat':self.__cat})
+        return self.__stt.get('ts_ar_%(cat)s' % {'cat':self.__cat})
 
     def get_ts_short(self):
         return self.get_ts().replace('-', '').replace(':', '').replace(' ', '')[0:8]

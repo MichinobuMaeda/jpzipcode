@@ -23,7 +23,8 @@ from jpzipcode.controller.utf8converter import Utf8Converter
 from jpzipcode.controller.tsv1converter import Tsv1Converter
 from jpzipcode.controller.tsv2converter import Tsv2Converter
 from jpzipcode.controller.tsv3converter import Tsv3Converter
-from jpzipcode.controller.jsonconverter import JsonConverter
+from jpzipcode.controller.jsonareaconverter import JsonAreaConverter
+from jpzipcode.controller.jsonzipconverter import JsonZipConverter
 from jpzipcode.model import Params, Status, Release
 from jpzipcode.utils import tz
 
@@ -31,13 +32,14 @@ class JobKicker(common.BasePage):
     
     # Jobクラス
     __jobs = {
-        'page':SourceChecker,
-        'arch':SourceChecker,
-        'utf8':Utf8Converter,
-        'tsv1':Tsv1Converter,
-        'tsv2':Tsv2Converter,
-        'tsv3':Tsv3Converter,
-        'json':JsonConverter,
+        'pg':SourceChecker,
+        'ar':SourceChecker,
+        'uc':Utf8Converter,
+        't1':Tsv1Converter,
+        't2':Tsv2Converter,
+        't3':Tsv3Converter,
+        'ja':JsonAreaConverter,
+        'jz':JsonZipConverter,
     }
     
     # HTTP GET
@@ -73,8 +75,8 @@ class JobKicker(common.BasePage):
         else:
             succ = Params().get('job_succ', name)
             if succ is None:
-                Status().set('updated_%(cat)s' % {'cat':cat}, tz.nowjststr())
-                Status().set('updated', tz.nowjststr())
+                Status().set('upd_%(cat)s' % {'cat':cat}, tz.nowjststr())
+                Status().set('upd', tz.nowjststr())
                 Release().reflesh()
                 ret = 'stop'
         self.ret_text(ret)

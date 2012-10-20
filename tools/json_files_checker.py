@@ -33,7 +33,7 @@ def main():
             if name.endswith('.json'):
                 print os.path.join(root, name)
                 with open(os.path.join(root, name)) as f:
-                    json.load(f, 'utf-8')
+                    json.load(f, 'utf8')
 
 if __name__ == '__main__':
     main()

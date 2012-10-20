@@ -34,15 +34,15 @@ class SourceChecker(Task):
         prv = self.get_stt('dig')
         res = urlfetch.fetch(url, deadline=60, headers=self.__headers)
         stts = {}
-        stts['checked'] = tz.nowjststr()
+        stts['chk'] = tz.nowjststr()
         if res.status_code == 200 and 0 < len(res.content):
             sha1 = hashlib.sha1()
             sha1.update(res.content)
             cur = sha1.hexdigest()
             if cur != prv:
                 stts['dig'] = cur
-                stts['modified'] = tz.nowjststr()
-                if self.get_task() == "arch":
+                stts['mod'] = tz.nowjststr()
+                if self.get_task() == "ar":
                     self.__save(res.content, self.get_cat(), stts)
         self.set_stt(stts)
         return 'ok'

@@ -16,7 +16,7 @@
 #
 import webapp2
 from jpzipcode.view import common
-from jpzipcode.model import Status
+from jpzipcode.model import Params, Status
 from jpzipcode.utils import tz
 
 class AdminMainPage(common.BasePage):
@@ -27,7 +27,10 @@ class AdminMainPage(common.BasePage):
             Status(is_test).clear(tz.nowjststr())
             self.redirect(self.request.path)
         else:
-            self.show('admin_main.html', {'stts':Status(is_test).get_list()})
+            self.show('admin_main.html', {
+            'stts':Status(is_test).get_list(),
+            'text':Params().get('view'),
+        })
 
     def post(self):
         is_test = self.get_host_port().startswith('localhost:')
@@ -37,7 +40,7 @@ class AdminMainPage(common.BasePage):
         else:
             for name in self.request.arguments():
                 stts[name] = self.request.get(name, default_value='')
-            stts['last_modified'] = tz.nowjststr()
+            stts['last_mod'] = tz.nowjststr()
             Status(is_test).merge(stts)
         self.redirect(self.request.url)
 

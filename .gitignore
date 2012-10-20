@@ -5,5 +5,5 @@
 .project
 .pydevproject
 .settings
-test/wk
-test/site/download
+test/site/wk
+test/log/*.bak

@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 import ConfigParser
+import hashlib
 import os
 import shutil
 import sys
@@ -38,7 +39,7 @@ def get_element_text(node):
             text.append(child.data)
     return ' '.join(text).strip()
 
-def backup_and_save(path, data):
+def backup_and_save(path, data, sha1sum=None):
     if os.path.isfile(path):
         bak_path = path + '.bak'
         if os.path.isfile(bak_path):
@@ -47,6 +48,13 @@ def backup_and_save(path, data):
     f = open(path, 'w')
     f.write(data)
     f.close()
+    f = open(path, 'r')
+    wk_sum = hashlib.sha1(f.read()).hexdigest()
+    f.close()
+    if sha1sum is None or wk_sum == sha1sum:
+        print 'Saved: %(path)s' % {'path':path}
+    else:
+        print 'Error: sha1sum: %(path)s' % {'path':path}
 
 def main():
     
@@ -99,6 +107,7 @@ def main():
     
     # RSS からファイルの URL を取得し、ダウンロードする。
     zipdata = {}
+    sha1sum = {}
     for trg_id in ids:
         zipdata[trg_id] = None
     dom = parse(rss_path)
@@ -108,15 +117,18 @@ def main():
             if title.startswith(trg_id + ':'):
                 link = get_element_text(item.getElementsByTagName('link')[0])
                 zipdata[trg_id] = get_http_content(link)
+                guid = get_element_text(item.getElementsByTagName('guid')[0])
+                sha1sum[trg_id] = guid[-40:]
                 if zipdata[trg_id]:
+                    print 'Downloaded: %(link)s' % {'link':link}
                     continue
                 print 'Error: failed to get %(rss_url)s.' % {'rss_url':rss_url}
                 return
     
-    # ダウンロードしたファイルを保存する。
+    # ダウンロードしたファイルを保存しハッシュ値を確認する。
     for trg_id in ids:
         arc_path = os.path.join(arc_dir, '%(trg_id)s.zip' % {'trg_id':trg_id})
-        backup_and_save(arc_path, zipdata[trg_id])
+        backup_and_save(arc_path, zipdata[trg_id], sha1sum[trg_id])
     
     # ファイルを解凍する。
     wk_dir = trg_dir + '_wk'

@@ -102,10 +102,10 @@ class Status():
             self.__stts[key] = stts[key]
         self.__update()
 
-    def clear(self, last_modified):
+    def clear(self, last_mod):
         for key in self.__stts.keys():
             self.__stts[key] = ''
-        self.__stts['last_modified'] = last_modified
+        self.__stts['last_mod'] = last_mod
         self.__update()
 
     def __update(self):
@@ -120,7 +120,7 @@ class Status():
             initparam = Params().get('param_ini_test')
         else:
             initparam = Params().get('param_ini')
-        initparam['last_modified'] = tz.nowjststr()
+        initparam['last_mod'] = tz.nowjststr()
         for key in initparam.keys():
             if key not in self.__stts or self.__stts[key] == '':
                 self.__stts[key] = initparam[key]

@@ -22,16 +22,16 @@ class Tsv3Converter(Task):
         Task.__init__(self, task, cat)
     
     def proc(self, zi, zip_info):
-        if self.get_cat() == 'ken':
-            yield ['tsvp_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_ken_pref(zi, zip_info)]
-            yield ['tsvc_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_ken_city(zi, zip_info)]
-            yield ['tsv3_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_ken_addr(zi, zip_info)]
-        elif self.get_cat() == 'jig':
-            yield ['tsvp_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_jig_pref(zi, zip_info)]
-            yield ['tsvc_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_jig_city(zi, zip_info)]
-            yield ['tsv3_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_jig_addr(zi, zip_info)]
+        if self.get_cat() == 'k':
+            yield ['tp_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_k_pref(zi, zip_info)]
+            yield ['tc_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_k_city(zi, zip_info)]
+            yield ['t3_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_k_addr(zi, zip_info)]
+        elif self.get_cat() == 'j':
+            yield ['tp_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_j_pref(zi, zip_info)]
+            yield ['tc_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_j_city(zi, zip_info)]
+            yield ['t3_%(cat)s.txt' % {'cat':self.get_cat()},self.__proc_j_addr(zi, zip_info)]
     
-    def __proc_ken_pref(self, zi, zip_info):
+    def __proc_k_pref(self, zi, zip_info):
         code = None
         lines = []
         with zi.open(zip_info) as r:
@@ -41,9 +41,9 @@ class Tsv3Converter(Task):
                     code = row[0][:2]
                     lines.append(u'\t'.join([code, row[6], row[3]]))
         lines.append('')
-        return u'\n'.join(lines).encode('utf-8')
+        return u'\n'.join(lines).encode('utf8')
     
-    def __proc_jig_pref(self, zi, zip_info):
+    def __proc_j_pref(self, zi, zip_info):
         code = None
         lines = []
         with zi.open(zip_info) as r:
@@ -53,9 +53,9 @@ class Tsv3Converter(Task):
                     code = row[0][:2]
                     lines.append(u'\t'.join([code, row[3], '']))
         lines.append('')
-        return u'\n'.join(lines).encode('utf-8')
+        return u'\n'.join(lines).encode('utf8')
     
-    def __proc_ken_city(self, zi, zip_info):
+    def __proc_k_city(self, zi, zip_info):
         code = None
         lines = []
         with zi.open(zip_info) as r:
@@ -65,9 +65,9 @@ class Tsv3Converter(Task):
                     code = row[0]
                     lines.append(u'\t'.join([code, row[7], row[4]]))
         lines.append('')
-        return u'\n'.join(lines).encode('utf-8')
+        return u'\n'.join(lines).encode('utf8')
     
-    def __proc_jig_city(self, zi, zip_info):
+    def __proc_j_city(self, zi, zip_info):
         code = None
         lines = []
         with zi.open(zip_info) as r:
@@ -77,9 +77,9 @@ class Tsv3Converter(Task):
                     code = row[0]
                     lines.append(u'\t'.join([code, row[4], '']))
         lines.append('')
-        return u'\n'.join(lines).encode('utf-8')
+        return u'\n'.join(lines).encode('utf8')
     
-    def __proc_ken_addr(self, zi, zip_info):
+    def __proc_k_addr(self, zi, zip_info):
         lines = []
         with zi.open(zip_info) as r:
             add1len = None
@@ -181,9 +181,9 @@ class Tsv3Converter(Task):
                     '',
                 ]))
         lines.append('')
-        return u'\n'.join(lines).encode('utf-8')
+        return u'\n'.join(lines).encode('utf8')
     
-    def __proc_jig_addr(self, zi, zip_info):
+    def __proc_j_addr(self, zi, zip_info):
         lines = []
         with zi.open(zip_info) as r:
             for line in r:
@@ -208,7 +208,7 @@ class Tsv3Converter(Task):
                     row[9],
                 ]))
         lines.append('')
-        return u'\n'.join(lines).encode('utf-8')
+        return u'\n'.join(lines).encode('utf8')
 
     def get_ext(self):
         return 'txt'

@@ -10,8 +10,8 @@
 <a name="job">
 <h2>Job</h2>
 <ul>
-  <li><a href="/job/page/ken/reg/admin/">/job/page/ken/reg/admin/</a></li>
-  <li><a href="/job/page/jig/reg/admin/">/job/page/jig/reg/admin/</a></li>
+  <li><a href="/job/pg/k/reg/admin/">/job/pg/k/reg/admin/</a></li>
+  <li><a href="/job/pg/j/reg/admin/">/job/pg/j/reg/admin/</a></li>
 </ul>
 
 <a name="status">
@@ -24,9 +24,9 @@
     <input class="button" type="reset" value="Reset">
   </p>
 {%- for stt in stts %}
-  {%- if (stt[0][-3:] == 'ken' or stt[0][-3:] == 'jig') and cat != stt[0][-3:] %}
-    {%- set cat = stt[0][-3:] %}
-    {%- if cat %}<a name="status.{{stt[0][-3:]}}"><h3>{{stt[0][-3:]}}</h3>{% endif %}
+  {%- if (stt[0][-1:] == 'k' or stt[0][-1:] == 'j') and cat != stt[0][-1:] %}
+    {%- set cat = stt[0][-1:] %}
+    {%- if cat %}<a name="status.{{cat}}"><h3>{{text[cat]}}</h3>{% endif %}
   {%- endif %}
   <div>
     <span class="param_name">{{stt[0]}}:</span>

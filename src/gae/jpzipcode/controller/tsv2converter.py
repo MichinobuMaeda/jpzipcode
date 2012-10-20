@@ -23,13 +23,13 @@ class Tsv2Converter(Task):
     
     def proc(self, zi, zip_info):
         data = None
-        if self.get_cat() == 'ken':
-            data = self.__proc_ken(zi, zip_info)
-        elif self.get_cat() == 'jig':
-            data = self.__proc_jig(zi, zip_info)
-        yield ['tsv2_%(cat)s.txt' % {'cat':self.get_cat(),},data,]
+        if self.get_cat() == 'k':
+            data = self.__proc_k(zi, zip_info)
+        elif self.get_cat() == 'j':
+            data = self.__proc_j(zi, zip_info)
+        yield ['t2_%(cat)s.txt' % {'cat':self.get_cat(),},data,]
     
-    def __proc_ken(self, zi, zip_info):
+    def __proc_k(self, zi, zip_info):
         lines = []
         with zi.open(zip_info) as r:
             row5 = None
@@ -53,9 +53,9 @@ class Tsv2Converter(Task):
                     row8 += row[8]
                 if row8 is None:
                     lines.append(u'\t'.join(row))
-        return u''.join(lines).encode('utf-8')
+        return u''.join(lines).encode('utf8')
     
-    def __proc_jig(self, zi, zip_info):
+    def __proc_j(self, zi, zip_info):
         return zi.read(zip_info)
 
     def get_ext(self):

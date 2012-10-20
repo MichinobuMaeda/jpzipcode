@@ -14,137 +14,151 @@
 
 # All parameter names
 param_names:
-  - last_modified
-  - updated
-  - updated_ken
-  - url_page_ken
-  - checked_page_ken
-  - modified_page_ken
-  - dig_page_ken
-  - url_arch_ken
-  - checked_arch_ken
-  - modified_arch_ken
-  - dig_arch_ken
-  - ts_arch_ken
-  - key_arch_ken
-  - csz_arch_ken
-  - dsz_arch_ken
-  - cnt_arch_ken
-  - dig_utf8_ken
-  - key_utf8_ken
-  - csz_utf8_ken
-  - dsz_utf8_ken
-  - cnt_utf8_ken
-  - dig_tsv1_ken
-  - key_tsv1_ken
-  - csz_tsv1_ken
-  - dsz_tsv1_ken
-  - cnt_tsv1_ken
-  - dig_tsv2_ken
-  - key_tsv2_ken
-  - csz_tsv2_ken
-  - dsz_tsv2_ken
-  - cnt_tsv2_ken
-  - dig_tsv3_ken
-  - key_tsv3_ken
-  - csz_tsv3_ken
-  - dsz_tsv3_ken
-  - cnt_tsv3_ken
-  - dig_json_ken
-  - key_json_ken
-  - csz_json_ken
-  - dsz_json_ken
-  - cnt_json_ken
-  - updated_jig
-  - url_page_jig
-  - checked_page_jig
-  - modified_page_jig
-  - dig_page_jig
-  - url_arch_jig
-  - checked_arch_jig
-  - modified_arch_jig
-  - dig_arch_jig
-  - ts_arch_jig
-  - key_arch_jig
-  - csz_arch_jig
-  - dsz_arch_jig
-  - cnt_arch_jig
-  - dig_utf8_jig
-  - key_utf8_jig
-  - csz_utf8_jig
-  - dsz_utf8_jig
-  - cnt_utf8_jig
-  - dig_tsv1_jig
-  - key_tsv1_jig
-  - csz_tsv1_jig
-  - dsz_tsv1_jig
-  - cnt_tsv1_jig
-  - dig_tsv2_jig
-  - key_tsv2_jig
-  - csz_tsv2_jig
-  - dsz_tsv2_jig
-  - cnt_tsv2_jig
-  - dig_tsv3_jig
-  - key_tsv3_jig
-  - csz_tsv3_jig
-  - dsz_tsv3_jig
-  - cnt_tsv3_jig
-  - dig_json_jig
-  - key_json_jig
-  - csz_json_jig
-  - dsz_json_jig
-  - cnt_json_jig
+  - last_mod
+  - upd
+  - upd_k
+  - url_pg_k
+  - chk_pg_k
+  - mod_pg_k
+  - dig_pg_k
+  - url_ar_k
+  - chk_ar_k
+  - mod_ar_k
+  - dig_ar_k
+  - ts_ar_k
+  - key_ar_k
+  - csz_ar_k
+  - dsz_ar_k
+  - cnt_ar_k
+  - dig_uc_k
+  - key_uc_k
+  - csz_uc_k
+  - dsz_uc_k
+  - cnt_uc_k
+  - dig_t1_k
+  - key_t1_k
+  - csz_t1_k
+  - dsz_t1_k
+  - cnt_t1_k
+  - dig_t2_k
+  - key_t2_k
+  - csz_t2_k
+  - dsz_t2_k
+  - cnt_t2_k
+  - dig_t3_k
+  - key_t3_k
+  - csz_t3_k
+  - dsz_t3_k
+  - cnt_t3_k
+  - dig_ja_k
+  - key_ja_k
+  - csz_ja_k
+  - dsz_ja_k
+  - cnt_ja_k
+  - dig_jz_k
+  - key_jz_k
+  - csz_jz_k
+  - dsz_jz_k
+  - cnt_jz_k
+  - upd_j
+  - url_pg_j
+  - chk_pg_j
+  - mod_pg_j
+  - dig_pg_j
+  - url_ar_j
+  - chk_ar_j
+  - mod_ar_j
+  - dig_ar_j
+  - ts_ar_j
+  - key_ar_j
+  - csz_ar_j
+  - dsz_ar_j
+  - cnt_ar_j
+  - dig_uc_j
+  - key_uc_j
+  - csz_uc_j
+  - dsz_uc_j
+  - cnt_uc_j
+  - dig_t1_j
+  - key_t1_j
+  - csz_t1_j
+  - dsz_t1_j
+  - cnt_t1_j
+  - dig_t2_j
+  - key_t2_j
+  - csz_t2_j
+  - dsz_t2_j
+  - cnt_t2_j
+  - dig_t3_j
+  - key_t3_j
+  - csz_t3_j
+  - dsz_t3_j
+  - cnt_t3_j
+  - dig_ja_j
+  - key_ja_j
+  - csz_ja_j
+  - dsz_ja_j
+  - cnt_ja_j
+  - dig_jz_j
+  - key_jz_j
+  - csz_jz_j
+  - dsz_jz_j
+  - cnt_jz_j
 
 # initial parameters
 param_ini:
-  url_page_ken: http://www.post.japanpost.jp/zipcode/dl/kogaki-zip.html
-  url_arch_ken: http://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip
-  url_page_jig: http://www.post.japanpost.jp/zipcode/dl/jigyosyo/index-zip.html
-  url_arch_jig: http://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/jigyosyo.zip
+  url_pg_k: http://www.post.japanpost.jp/zipcode/dl/kogaki-zip.html
+  url_ar_k: http://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip
+  url_pg_j: http://www.post.japanpost.jp/zipcode/dl/jigyosyo/index-zip.html
+  url_ar_j: http://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/jigyosyo.zip
 
 # initial parameters for test
 param_ini_test:
-  url_page_ken: http://localhost:8999/ken.html
-  url_arch_ken: http://localhost:8999/ken_all.zip
-  url_page_jig: http://localhost:8999/jig.html
-  url_arch_jig: http://localhost:8999/jigyosyo.zip
+  url_pg_k: http://localhost:8999/ken.html
+  url_ar_k: http://localhost:8999/ken_all.zip
+  url_pg_j: http://localhost:8999/jig.html
+  url_ar_j: http://localhost:8999/jigyosyo.zip
 
 # Job の実行順序
 job_succ:
-  page: arch
-  arch: utf8
-  utf8: tsv1
-  tsv1: tsv2
-  tsv2: tsv3
-  tsv3: json
-  json: null
+  pg: ar
+  ar: uc
+  uc: t1
+  t1: t2
+  t2: t3
+  t3: ja
+  ja: jz
+  jz: null
 
 # Jobの依存関係
 job_prv:
-  page: null
-  arch: page
-  utf8: arch
-  tsv1: utf8
-  tsv2: tsv1
-  tsv3: tsv2
-  json: tsv3
+  pg: null
+  ar: pg
+  uc: ar
+  t1: uc
+  t2: t1
+  t3: t2
+  ja: t3
+  jz: t3
 
 # View
 view:
   publisher: michinobumaeda@gmail.com
   cat:
-    - ken
-    - jig
+    - k
+    - j
   task:
-    - utf8
-    - tsv1
-    - tsv2
-    - tsv3
-    - json
-  ken: 全県
-  jig: 事業所
-  utf8: CSV UTF-8 CRLF
-  tsv1: Tab区切り UTF-8 LF
-  tsv2: Tab区切り UTF-8 LF 1レコード1行
-  tsv3: Tab区切り UTF-8 LF 説明事項等分離
-  json: JSON UTF-8 LF 読み無し
+    - uc
+    - t1
+    - t2
+    - t3
+    - ja
+    - jz
+  k: 全県
+  j: 事業所
+  uc: CSV UTF-8 CRLF
+  t1: Tab区切り UTF-8 LF
+  t2: Tab区切り UTF-8 LF 1レコード1行
+  t3: Tab区切り UTF-8 LF 説明事項等分離
+  ja: JSON UTF-8 LF 読み無し 自治体別
+  jz: JSON UTF-8 LF 読み無し 郵便番号別

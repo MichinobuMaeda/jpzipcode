@@ -28,9 +28,9 @@ class FeedRssPage(common.BasePage):
             'text':Params().get('view'),
             'base_url':self.get_base_url(),
             'pub_date':{
-                'all':tz.jststr2rfc822(stts.get('updated')),
-                'ken':tz.jststr2rfc822(stts.get('updated_ken')),
-                'jig':tz.jststr2rfc822(stts.get('updated_jig')),
+                'a':tz.jststr2rfc822(stts.get('upd')),
+                'k':tz.jststr2rfc822(stts.get('upd_k')),
+                'j':tz.jststr2rfc822(stts.get('upd_j')),
             }
         }, 'application/rss+xml')
 

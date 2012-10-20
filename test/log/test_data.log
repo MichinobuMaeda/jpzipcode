@@ -1,0 +1,36 @@
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/feed.rss
+Traceback (most recent call last):
+  File "/Users/michinobu/jpzipcode/tools/./../src/download/jpzipcode_download.py", line 151, in <module>
+    main()
+  File "/Users/michinobu/jpzipcode/tools/./../src/download/jpzipcode_download.py", line 131, in main
+    backup_and_save(arc_path, zipdata[trg_id], sha1sum[trg_id])
+KeyError: 'uc_k'
+uc_k.csv
+OK
+uc_j.csv
+OK
+t1_k.txt
+OK
+t1_j.txt
+OK
+t2_k.txt
+OK
+see: diff-t1_k-t2_k.txt
+t2_j.txt
+OK
+t3_k.txt
+OK
+see: diff-t2_k-t3_k.txt
+t3_j.txt
+Files t3_j.txt and test-t2_j.txt differ
+NG
+tp_k.txt
+OK
+tp_j.txt
+OK
+tc_k.txt
+OK
+tc_j.txt
+Files /Users/michinobu/jpzipcode/tools/./../test/log/diff-tc_j.bak and /Users/michinobu/jpzipcode/tools/./../test/log/diff-tc_j.txt differ
+NG
+see: diff-tc_j.txt

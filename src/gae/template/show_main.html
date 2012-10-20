@@ -11,14 +11,14 @@
 <dl>
   <dt>配布元</dt>
   <dd>
-    <div class="url"><a href="{{stts['url_page_' + cat]}}">{{stts['url_page_' + cat]}}</a></div>
-    <div class="url"><a href="{{stts['url_arch_' + cat]}}">{{stts['url_arch_' + cat]}}</a></div>
+    <div class="url"><a href="{{stts['url_pg_' + cat]}}">{{stts['url_pg_' + cat]}}</a></div>
+    <div class="url"><a href="{{stts['url_ar_' + cat]}}">{{stts['url_ar_' + cat]}}</a></div>
   </dd>
 </dl>
-{%- if stts['ts_arch_' + cat] %}
-{%- set ts_cat = stts['ts_arch_' + cat][:10]|replace('-', '') %}
-<p>配布元生成日時:<span class="ts">{{stts['ts_arch_' + cat]}}</span></p>
-<p>生成物更新日時:<span class="ts">{{stts['updated_' + cat]}}</span></p>
+{%- if stts['ts_ar_' + cat] %}
+{%- set ts_cat = stts['ts_ar_' + cat][:10]|replace('-', '') %}
+<p>配布元生成日時:<span class="ts">{{stts['ts_ar_' + cat]}}</span></p>
+<p>生成物更新日時:<span class="ts">{{stts['upd_' + cat]}}</span></p>
 {%- endif %}
 
 {%- for task in text['task'] %}

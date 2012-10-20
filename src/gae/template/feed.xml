@@ -12,22 +12,22 @@
     <managingEditor>{{text['publisher']}}</managingEditor>
     <webMaster>{{text['publisher']}}</webMaster>
     {%- for cat in text['cat'] %}
-    {%- if stts['ts_arch_' + cat] %}
-    {%- set ts_source = stts['ts_arch_' + cat][:10]|replace('-', '') %}
+    {%- if stts['ts_ar_' + cat] %}
+    {%- set ts_source = stts['ts_ar_' + cat][:10]|replace('-', '') %}
     {%- set ts_update = stts['update_' + cat]|replace('-', '')|replace(' ', '')|replace(':', '') %}
     {%- for task in text['task'] %}
     <item>
       <title>{{task}}_{{cat}}: {{text[cat]}} {{text[task]}}</title>
       <link>{{ base_url }}download/{{task}}_{{cat}}-{{ts_source}}.zip</link>
       <description><![CDATA[
-配布元生成日時: {{stts['ts_arch_' + cat]}}<br>
-生成物更新日時: {{stts['updated_' + cat]}}<br>
+配布元生成日時: {{stts['ts_ar_' + cat]}}<br>
+生成物更新日時: {{stts['upd_' + cat]}}<br>
 サイズ: {{stts['csz_' + task + '_' + cat]}} byte<br>
 SHA1: {{stts['dig_' + task + '_' + cat]}}<br>
 解凍後: {{stts['cnt_' + task + '_' + cat]}} ファイル 計 {{stts['dsz_' + task + '_' + cat]}} byte
       ]]></description>
       <pubDate>{{pub_date[cat]}}</pubDate>
-      <guid>{{ base_url }}download/{{task}}_{{cat}}-{{ts_source}}.zip#{{ts_update}}</guid>
+      <guid>{{ base_url }}download/{{task}}_{{cat}}-{{ts_source}}.zip#{{stts['dig_' + task + '_' + cat]}}</guid>
     </item>
     {%- endfor %}
     {%- endif %}

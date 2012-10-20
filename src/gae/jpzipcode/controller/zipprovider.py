@@ -22,15 +22,15 @@ class ZipProvider(webapp2.RequestHandler):
 
     def get(self):
         filename = self.request.path.replace('/download/', '')
-        task = filename[0:4]
-        cat = filename[5:8]
+        task = filename[0:2]
+        cat = filename[3:4]
         ts = "%(y)s-%(m)s-%(d)s" % {
-            'y':filename[9:13],
-            'm':filename[13:15],
-            'd':filename[15:17],
+            'y':filename[5:9],
+            'm':filename[9:11],
+            'd':filename[11:13],
         }
         stts = Status()
-        if stts.get("ts_arch_%(cat)s" % {'cat':cat})[0:10] != ts:
+        if stts.get("ts_ar_%(cat)s" % {'cat':cat})[0:10] != ts:
             self.error(404)
             return
         key = stts.get("key_%(task)s_%(cat)s" % {'cat':cat, 'task':task})
