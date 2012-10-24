@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 cron:
-#- description: check k
-#  url: /job/pg/k/
-#  schedule: every day 00:03
-#  timezone: Asia/Tokyo
-#- description: check j
-#  url: /job/pg/j/
-#  schedule: every day 00:07
-#  timezone: Asia/Tokyo
+- description: check k
+  url: /job/pg/k/reg/admin/
+  schedule: every day 00:03
+  timezone: Asia/Tokyo
+- description: check j
+  url: /job/pg/j/reg/admin/
+  schedule: every day 01:03
+  timezone: Asia/Tokyo
