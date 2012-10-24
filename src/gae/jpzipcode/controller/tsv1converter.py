@@ -27,7 +27,7 @@ class Tsv1Converter(Task):
         with zi.open(zip_info) as zr:
             cr = csv.reader(zr, delimiter=',', quotechar='"')
             for line in cr:
-                lines.append('\t'.join(unicode(row, 'utf8') for row in line))
+                lines.append(u'\t'.join(unicode(row, 'utf8') for row in line))
             lines.append('')
         yield ['t1_%(cat)s.txt' % {'cat':self.get_cat(),},u'\n'.join(lines).encode('utf8')]
 

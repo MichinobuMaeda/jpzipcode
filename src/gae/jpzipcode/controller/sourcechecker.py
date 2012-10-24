@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 import hashlib
+import logging
 import zipfile
 from google.appengine.api import urlfetch
 from google.appengine.ext import blobstore
@@ -35,15 +36,26 @@ class SourceChecker(Task):
         res = urlfetch.fetch(url, deadline=60, headers=self.__headers)
         stts = {}
         stts['chk'] = tz.nowjststr()
-        if res.status_code == 200 and 0 < len(res.content):
-            sha1 = hashlib.sha1()
-            sha1.update(res.content)
-            cur = sha1.hexdigest()
-            if cur != prv:
-                stts['dig'] = cur
-                stts['mod'] = tz.nowjststr()
-                if self.get_task() == "ar":
-                    self.__save(res.content, self.get_cat(), stts)
+        if res.status_code != 200:
+            logging.error('HTTP Response: %(cd)s' % {'cd':res.status_code})
+            return None
+        if not res.content:
+            logging.error('No content.')
+            return None
+        if 1 > len(res.content):
+            logging.error('Content length: %(len)s' % {'len':len(res.content)})
+            return None
+        sha1 = hashlib.sha1()
+        sha1.update(res.content)
+        cur = sha1.hexdigest()
+        if cur == prv:
+            self.set_stt(stts)
+            logging.info('Nothing to get.')
+            return 'stop'
+        stts['dig'] = cur
+        stts['mod'] = tz.nowjststr()
+        if self.get_task() == "ar":
+            self.__save(res.content, self.get_cat(), stts)
         self.set_stt(stts)
         return 'ok'
     
@@ -56,6 +68,7 @@ class SourceChecker(Task):
         if len(zi.infolist()) != 1:
             zi.close()
             zr.close()
+            logging.error('No ZIP entry.')
             return None
         for zip_info in zi.infolist():
             t = zip_info.date_time

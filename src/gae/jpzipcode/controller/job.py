@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 """ジョブ・コントローラ"""
+import logging
 import webapp2
 from google.appengine.api import taskqueue
 from jpzipcode.view import common
@@ -70,8 +71,11 @@ class JobKicker(common.BasePage):
             taskqueue.add(url='/job/%(name)s/%(cat)s' % {'name':name, 'cat':cat})
             self.redirect('/' + '/'.join(params[5:]))
             return
-        elif not job.kick():
-            ret = 'Error: Failed: %(path)s' % {'path':self.request.path}
+        stt = job.kick()
+        if not stt:
+            ret = 'Error: Failed to proc: %(path)s' % {'path':self.request.path}
+        elif stt == 'stop':
+            ret = 'stop'
         elif ctrl == 'stop':
             ret = 'stop'
         else:
@@ -83,6 +87,10 @@ class JobKicker(common.BasePage):
                 ret = 'stop'
         self.ret_text(ret)
         if ret == 'ok':
-            taskqueue.add(url='/job/%(name)s/%(cat)s' % {'name':succ, 'cat':cat})
+            taskqueue.add(url='/job/%(name)s/%(cat)s' % {'name':succ, 'cat':cat}, countdown=15)
+    
+    def ret_text(self, ret):
+        common.BasePage.ret_text(self, ret)
+        logging.info(ret)
 
 app = webapp2.WSGIApplication([('/job/.*', JobKicker)])
