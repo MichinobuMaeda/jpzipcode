@@ -96,7 +96,7 @@ class Task():
         sha1 = hashlib.sha1()
         sha1.update(con)
         stts['dig'] = sha1.hexdigest()
-        stts['key'] = save_blob(con, '%(tsk)s_%(cat)s-$(ts)s.zip' % {
+        stts['key'] = save_blob(con, '%(tsk)s_%(cat)s-%(ts)s.zip' % {
             'cat':self.get_cat(),
             'tsk':self.get_task(),
             'ts':self.get_ts_short(),
