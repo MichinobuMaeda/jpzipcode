@@ -76,8 +76,6 @@ class Task():
         return self.convert()
     
     def convert(self):
-        dsz = 0
-        cnt = 0
         stts = {}
         key = self.get_stt_prev('key')
         blob_info = blobstore.BlobInfo(blobstore.BlobKey(key))
@@ -89,13 +87,7 @@ class Task():
             return None
         zw = StringIO.StringIO()
         zo = zipfile.ZipFile(zw, 'w', zipfile.ZIP_DEFLATED)
-        for zip_info in zi.infolist():
-            for data in self.proc(zi, zip_info):
-                zo.writestr(data[0], data[1], zipfile.ZIP_DEFLATED)
-                dsz += len(data[1])
-                cnt += 1
-            stts['dsz'] = dsz
-            stts['cnt'] = cnt
+        self.proc_all(zi, zo, stts)
         zo.close()
         zi.close()
         zr.close()
@@ -111,6 +103,17 @@ class Task():
         })
         self.set_stt(stts)
         return 'ok'
+
+    def proc_all(self, zi, zo, stts):
+        dsz = 0
+        cnt = 0
+        for zip_info in zi.infolist():
+            for data in self.proc(zi, zip_info):
+                zo.writestr(data[0], data[1], zipfile.ZIP_DEFLATED)
+                dsz += len(data[1])
+                cnt += 1
+            stts['dsz'] = dsz
+            stts['cnt'] = cnt
     
     # to be overidden
     def proc(self, zi, zip_info):

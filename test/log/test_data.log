@@ -1,10 +1,44 @@
 Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/feed.rss
-Traceback (most recent call last):
-  File "/Users/michinobu/jpzipcode/tools/./../src/download/jpzipcode_download.py", line 151, in <module>
-    main()
-  File "/Users/michinobu/jpzipcode/tools/./../src/download/jpzipcode_download.py", line 131, in main
-    backup_and_save(arc_path, zipdata[trg_id], sha1sum[trg_id])
-KeyError: 'uc_k'
+Downloaded: http://localhost:8080/download/uc_k-20120827.zip
+Downloaded: http://localhost:8080/download/t1_k-20120827.zip
+Downloaded: http://localhost:8080/download/t2_k-20120827.zip
+Downloaded: http://localhost:8080/download/t3_k-20120827.zip
+Downloaded: http://localhost:8080/download/uc_j-20120829.zip
+Downloaded: http://localhost:8080/download/t1_j-20120829.zip
+Downloaded: http://localhost:8080/download/t2_j-20120829.zip
+Downloaded: http://localhost:8080/download/t3_j-20120829.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/uc_k.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/uc_j.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/t1_k.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/t1_j.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/t2_k.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/t2_j.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/t3_k.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/t3_j.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/feed.rss
+Downloaded: http://localhost:8080/download/ja_k-20120827.zip
+Downloaded: http://localhost:8080/download/ja_j-20120829.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/ja_k.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/ja_j.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/feed.rss
+Downloaded: http://localhost:8080/download/jb_k-20120827.zip
+Downloaded: http://localhost:8080/download/jb_j-20120829.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/jb_k.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/jb_j.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/feed.rss
+Downloaded: http://localhost:8080/download/jy_k-20120827.zip
+Downloaded: http://localhost:8080/download/jy_j-20120829.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/jy_k.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/jy_j.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/feed.rss
+Downloaded: http://localhost:8080/download/jz_k-20120827.zip
+Downloaded: http://localhost:8080/download/jz_j-20120829.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/jz_k.zip
+Saved: /Users/michinobu/jpzipcode/tools/./../src/download/../../test/site/wk/arc/jz_j.zip
+Archive:  /Users/michinobu/jpzipcode/tools/./../test/site/wk/arc/ar_k.zip
+  inflating: /Users/michinobu/jpzipcode/tools/./../test/site/wk/trg/KEN_ALL.CSV  
+Archive:  /Users/michinobu/jpzipcode/tools/./../test/site/wk/arc/ar_j.zip
+  inflating: /Users/michinobu/jpzipcode/tools/./../test/site/wk/trg/JIGYOSYO.CSV  
 uc_k.csv
 OK
 uc_j.csv
@@ -22,8 +56,7 @@ t3_k.txt
 OK
 see: diff-t2_k-t3_k.txt
 t3_j.txt
-Files t3_j.txt and test-t2_j.txt differ
-NG
+OK
 tp_k.txt
 OK
 tp_j.txt
@@ -31,6 +64,5 @@ OK
 tc_k.txt
 OK
 tc_j.txt
-Files /Users/michinobu/jpzipcode/tools/./../test/log/diff-tc_j.bak and /Users/michinobu/jpzipcode/tools/./../test/log/diff-tc_j.txt differ
-NG
+OK
 see: diff-tc_j.txt

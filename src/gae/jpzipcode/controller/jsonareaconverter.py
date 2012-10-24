@@ -55,7 +55,7 @@ class JsonAreaConverter(JsonConverter):
                 if city == None:
                     city = row[0]
                 if city != row[0]:
-                    data = '[%(list)s]' % {'list':u','.join(lines)}
+                    data = self.__format_data(city, lines)
                     yield [city, data.encode('utf8')]
                     city = row[0]
                     lines = []
@@ -75,5 +75,25 @@ class JsonAreaConverter(JsonConverter):
                 if row[5]:
                     item.append('"r":"%(v)s"' % {'v':row[5]})
                 lines.append('{%(item)s}' % {'item':','.join(item)})
-            data = '[%(list)s]' % {'list':u','.join(lines)}
+            data = self.__format_data(city, lines)
             yield [city, data.encode('utf8')]
+    
+    def __format_data(self, city, lines):
+        if self.short:
+            return '[\n%(list)s\n]' % {
+                'list':u',\n'.join(lines),
+            }
+        else:
+            return '{"p":{"c":"%(pc)s","n":"%(pn)s"},"c":{"c":"%(cc)s","n":"%(cn)s"},"a":[\n%(list)s\n]}' % {
+                'pc':city[:2],
+                'pn':self.prefs[city[:2]],
+                'cc':city,
+                'cn':self.cities[city],
+                'list':u',\n'.join(lines),
+            }
+
+class JsonAreaShortConverter(JsonAreaConverter):
+
+    def __init__(self, task, cat):
+        JsonAreaConverter.__init__(self, task, cat)
+        self.short = True

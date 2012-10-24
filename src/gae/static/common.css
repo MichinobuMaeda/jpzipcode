@@ -84,7 +84,7 @@ a.rss img {
   color: #eee;
 }
 #gaelogo {
-  float: left;
+  float: right;
   height: 30px;
   width: 120px;
   margin: .25em .5em .25em .5em;
@@ -122,4 +122,27 @@ h3 {
 img.icon {
   width: 1em;
   height: 1em;
+}
+.note-link {
+  font-size: 75%;
+}
+.note-link img {
+  width: 1em;
+  height: 1em;
+}
+pre {
+  font-family: "Lucida Console", Monaco, monospace;
+  line-height: 1.2em;
+  padding: .25em .25em .25em .25em;
+  margin: .25em 1em .25em 1em;
+  background-color: #ffe;
+  border-left: solid .5em #eec;
+  border-right: solid .5em #eec;
+}
+code {
+  font-family: "Lucida Console", Monaco, monospace;
+}
+.attention {
+  color: red;
+  font-size: 160%;
 }

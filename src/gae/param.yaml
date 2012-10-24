@@ -60,6 +60,16 @@ param_names:
   - csz_jz_k
   - dsz_jz_k
   - cnt_jz_k
+  - dig_jb_k
+  - key_jb_k
+  - csz_jb_k
+  - dsz_jb_k
+  - cnt_jb_k
+  - dig_jy_k
+  - key_jy_k
+  - csz_jy_k
+  - dsz_jy_k
+  - cnt_jy_k
   - upd_j
   - url_pg_j
   - chk_pg_j
@@ -104,6 +114,16 @@ param_names:
   - csz_jz_j
   - dsz_jz_j
   - cnt_jz_j
+  - dig_jb_j
+  - key_jb_j
+  - csz_jb_j
+  - dsz_jb_j
+  - cnt_jb_j
+  - dig_jy_j
+  - key_jy_j
+  - csz_jy_j
+  - dsz_jy_j
+  - cnt_jy_j
 
 # initial parameters
 param_ini:
@@ -128,7 +148,9 @@ job_succ:
   t2: t3
   t3: ja
   ja: jz
-  jz: null
+  jz: jb
+  jb: jy
+  jy: null
 
 # Jobの依存関係
 job_prv:
@@ -140,6 +162,8 @@ job_prv:
   t3: t2
   ja: t3
   jz: t3
+  jb: t3
+  jy: t3
 
 # View
 view:
@@ -154,7 +178,9 @@ view:
     - t3
     - ja
     - jz
-  k: 全県
+    - jb
+    - jy
+  k: 住所
   j: 事業所
   uc: CSV UTF-8 CRLF
   t1: Tab区切り UTF-8 LF
@@ -162,3 +188,5 @@ view:
   t3: Tab区切り UTF-8 LF 説明事項等分離
   ja: JSON UTF-8 LF 読み無し 自治体別
   jz: JSON UTF-8 LF 読み無し 郵便番号別
+  jb: JSON UTF-8 LF 読み無し 自治体別 短め
+  jy: JSON UTF-8 LF 読み無し 郵便番号別 短め

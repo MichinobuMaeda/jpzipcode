@@ -14,24 +14,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+UNZIP_PATH=/usr/bin/unzip
 PYTHON_PATH=/usr/bin/python
+CURL_PATH=/opt/local/bin/curl
 #
 WK_DIR="`pwd`/$( dirname "$0" )/../test/site/wk"
 LOG_DIR="`pwd`/$( dirname "$0" )/../test/log"
 LOG_NAME="${LOG_DIR}/test_data.log"
 PY_DL_SCRIPT=`pwd`/$( dirname "$0" )/../src/download/jpzipcode_download.py
-PY_DL_CONF=`pwd`/$( dirname "$0" )/../test/jpzipcode_download.conf
+PY_DL_CONF=`pwd`/$( dirname "$0" )/../test/jpzipcode_download
 JSON_CHECKER="`pwd`/$( dirname "$0" )/json_files_checker.py"
 
 if [ ! -d ${WK_DIR} ] ; then mkdir -p ${WK_DIR} ; fi
 if [ -f ${WK_DIR}/arc/feed.rss ] ; then mv -f ${WK_DIR}/arc/feed.rss ${WK_DIR}/arc/feed.bak ; fi
 cd ${WK_DIR}
-${PYTHON_PATH} ${PY_DL_SCRIPT} ${PY_DL_CONF} > ${LOG_NAME} 2>&1
+${PYTHON_PATH} ${PY_DL_SCRIPT} ${PY_DL_CONF}.conf > ${LOG_NAME} 2>&1
+for SUB_DIR in a b y z
+do
+	if [ -d trg/${SUB_DIR}_bak ] ; then rm -f trg/${SUB_DIR}_bak; fi
+	if [ -d trg/${SUB_DIR} ] ; then mv trg/${SUB_DIR} trg/${SUB_DIR}_bak; fi
+	mkdir trg/${SUB_DIR}
+	if [ -f ${WK_DIR}/arc/feed.rss ] ; then mv -f ${WK_DIR}/arc/feed.rss ${WK_DIR}/arc/feed.bak ; fi
+	${PYTHON_PATH} ${PY_DL_SCRIPT} ${PY_DL_CONF}_${SUB_DIR}.conf >> ${LOG_NAME} 2>&1
+done
 for ARC_URL in `cat ${LOG_NAME} |grep "http://.*/uc_" |sed 's|.*\(http://.*\)/uc_|\1/ar_|g'`
 do
 	ARC_NAME=`echo "${ARC_URL}" |sed -e 's|.*/||g' -e 's/-.*\.zip/\.zip/g'`
-	curl ${ARC_URL} > ${WK_DIR}/arc/${ARC_NAME} 2>/dev/null
-	unzip ${WK_DIR}/arc/${ARC_NAME} -d ${WK_DIR}/trg >> ${LOG_NAME} 2>&1
+	${CURL_PATH} ${ARC_URL} > ${WK_DIR}/arc/${ARC_NAME} 2>/dev/null
+	${UNZIP_PATH} ${WK_DIR}/arc/${ARC_NAME} -d ${WK_DIR}/trg >> ${LOG_NAME} 2>&1
 done
 
 cd ${WK_DIR}/trg

@@ -23,8 +23,8 @@ from jpzipcode.controller.utf8converter import Utf8Converter
 from jpzipcode.controller.tsv1converter import Tsv1Converter
 from jpzipcode.controller.tsv2converter import Tsv2Converter
 from jpzipcode.controller.tsv3converter import Tsv3Converter
-from jpzipcode.controller.jsonareaconverter import JsonAreaConverter
-from jpzipcode.controller.jsonzipconverter import JsonZipConverter
+from jpzipcode.controller.jsonareaconverter import JsonAreaConverter, JsonAreaShortConverter
+from jpzipcode.controller.jsonzipconverter import JsonZipConverter, JsonZipShortConverter
 from jpzipcode.model import Params, Status, Release
 from jpzipcode.utils import tz
 
@@ -40,6 +40,8 @@ class JobKicker(common.BasePage):
         't3':Tsv3Converter,
         'ja':JsonAreaConverter,
         'jz':JsonZipConverter,
+        'jb':JsonAreaShortConverter,
+        'jy':JsonZipShortConverter,
     }
     
     # HTTP GET

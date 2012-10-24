@@ -5,6 +5,7 @@
 {% include 'header.html' %}
   <div id="content">
 
+<p class="attention">現在当サイトは、データの正確さ等について検証中作業です。</p>
 <p><a href="/feed.rss" class="rss"><img src="/static/feed-icon-14x14.png"> RSS</a></p>
 {%- for cat in text['cat'] %}
 <h2>{{text[cat]}}</h2>
@@ -24,7 +25,7 @@
 {%- for task in text['task'] %}
 
 {%- if stts['dig_' + task + '_' + cat] %}
-<h3>{{text[task]}}</h3>
+<h3> {{text[task]}} <a class="note-link" href="/notice.html#{{task}}"><img src="/static/pencil.png" alt="鉛筆マーク"> 説明..</a></h3>
 <p>
   <a href="/download/{{task}}_{{cat}}-{{ts_cat}}.zip">{{task}}_{{cat}}-{{ts_cat}}.zip</a>
   <span class="size">{{stts['csz_' + task + '_' + cat]}}</span>byte

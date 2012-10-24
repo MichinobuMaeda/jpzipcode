@@ -5,25 +5,526 @@
 {% include 'header.html' %}
   <div id="content">
 
-<h2>データの著作権</h2>
+<p class="attention">現在当サイトは、データの正確さ等について検証中作業です。</p>
+<ul>
+  <li><a href="#fmt">フォーマット</a>
+    <ul>
+      <li><a href="#uc">CSV UTF-8 CRLF</a></li>
+      <li><a href="#t1">Tab区切り UTF-8 LF</a></li>
+      <li><a href="#t2">Tab区切り UTF-8 LF 1レコード1行</a></li>
+      <li><a href="#t3">Tab区切り UTF-8 LF 説明事項等分離</a></li>
+      <li><a href="#ja">JSON UTF-8 LF 読み無し 自治体別</a></li>
+      <li><a href="#jz">JSON UTF-8 LF 読み無し 郵便番号別</a></li>
+      <li><a href="#jb">JSON UTF-8 LF 読み無し 自治体別 短め</a></li>
+      <li><a href="#jy">JSON UTF-8 LF 読み無し 郵便番号別 短め</a></li>
+    </ul>
+  </li>
+  <li><a href="#cr">著作権</a>
+    <ul>
+      <li><a href="#crd">データの著作権</a></li>
+      <li><a href="#crp">プログラムの著作権</a></li>
+      <li><a href="#cra">当サイトで利用する著作物</a></li>
+    </ul>
+  </li>
+  <li><a href="#notice">免責事項</a></li>
+</ul>
+
+<a name="fmt">
+<h2>フォーマット</h2>
+
+<a name="uc">
+<h3>CSV UTF-8 CRLF</h3>
+<p>文字コード: UTF-8</p>
+<p>改行コード: CR + LF ( Windows )</p>
+<p>
+  日本郵便配布のCSV形式のデータの文字コードだけを変えたものです。
+</p>
+<p>
+  カンマ "," で区切られた各項目についての説明は、
+  日本郵便の <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a>
+  と <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a>
+  をご参照ください。
+</p>
+
+<a name="t1">
+<h3>Tab区切り UTF-8 LF</h3>
+<p>文字コード: UTF-8</p>
+<p>改行コード: LF ( Unix )</p>
+<p>
+  "CSV UTF-8 CRLF" をタブ区切り形式に変換したものです。
+</p>
+<p>
+  タブ・コードで区切られた各項目についての説明は、
+  日本郵便の <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a>
+  と <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a>
+  をご参照ください。
+</p>
+
+<a name="t2">
+<h3>Tab区切り UTF-8 LF 1レコード1行</h3>
+<p>文字コード: UTF-8</p>
+<p>改行コード: LF ( Unix )</p>
+<p>
+  日本郵便配布の住所データには、長いレコードを複数の行に格納したものがあります。
+  "Tab区切り UTF-8 LF" を基に、複数行に格納された論理的な 1レコードが 1行になるよう変換したものです。
+  事業所データは "Tab区切り UTF-8 LF" と同じものです。
+</p>
+<p>
+  タブ・コードで区切られた各項目についての説明は、
+  日本郵便の <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a>
+  と <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a>
+  をご参照ください。
+</p>
+
+<a name="t3">
+<h3>Tab区切り UTF-8 LF 説明事項等分離</h3>
+<p>文字コード: UTF-8</p>
+<p>改行コード: LF ( Unix )</p>
+<p>
+  "Tab区切り UTF-8 LF 1レコード1行" を基に、以下のような加工をしたものです。
+</p>
+<ol>
+  <li>都道府県と市区町村のデータを分離</li>
+  <li>住所データの「以下に掲載がない場合」など、住所表記以外の説明の項目を分離</li>
+  <li>住所データの丸括弧で括られた詳細な表記「（...）」やビル名・ビルの階層などの項目を分離</li>
+  <li>住所のデータと、事業所のデータの項目の構成を統一</li>
+</ol>
+<p>各レコードの項目は以下のようになります。事業所データは一部の読みを含みません。</p>
+<ol>
+  <li>市区町村コード</li>
+  <li>郵便番号</li>
+  <li>町名など</li>
+  <li>番地・ビル名など</li>
+  <li>住所データのビルの場合は階層、事業所データの場合は事業所名</li>
+  <li>説明事項</li>
+  <li>「3.」の読み</li>
+  <li>「4.」の読み</li>
+  <li>「5.」の読み</li>
+  <li>
+    一町域が二以上の郵便番号で表される場合の表示 :
+    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
+    <br>複数番号の有無 :
+    <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a> 参照
+  </li>
+  <li>
+    小字毎に番地が起番されている町域の表示 :
+    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
+  </li>
+  <li>
+    丁目を有する町域の場合の表示 :
+    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
+  </li>
+  <li>
+    一つの郵便番号で二以上の町域を表す場合の表示 :
+    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
+  </li>
+  <li>
+    更新の表示 :
+    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
+    <br>修正コード :
+    <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a> 参照
+  </li>
+  <li>
+    変更理由 :
+    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
+  </li>
+  <li>
+    個別番号の種別の表示 :
+    <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a> 参照
+  </li>
+  <li>
+    取扱局（漢字） :
+    <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a> 参照
+  </li>
+</ol>
+<p>都道府県データの項目は以下のようになります。</p>
+<ol>
+  <li>都道府県コード : 数字2桁</li>
+  <li>都道府県名</li>
+  <li>都道府県名読み : 事業所データの場合は空欄</li>
+</ol>
+<p>市区町村データの項目は以下のようになります。</p>
+<ol>
+  <li>市区町村コード : 数字2桁</li>
+  <li>市区町村名</li>
+  <li>市区町村名読み : 事業所データの場合は空欄</li>
+</ol>
+
+<a name="ja">
+<h3>JSON UTF-8 LF 読み無し 自治体別</h3>
+<p>文字コード: UTF-8</p>
+<p>改行コード: LF ( Unix )</p>
+<p>
+  自治体別のJSON形式のデータです。JSONについては
+  <a href="http://www.json.org/json-ja.html" target="_blank">http://www.json.org/json-ja.html</a> をご参照ください。
+</p>
+<p>
+  フォルダ ( ディレクトリ ) の構成は以下の通りです。
+</p>
+<pre>
++-- k                 -- 住所データ
+|   |   pref.json     -- 都道府県データ
+|   +-- 01            -- 北海道
+|   |       city.json -- 北海道の市区町村データ
+|   |       101.json  -- 札幌市中央区
+|   |       ...
+|   |       643.json  -- 中川郡幕別町
+|   ...
+|   +-- 47            -- 沖縄県
+|           city.json -- 沖縄県の市区町村データ
+|           201.json  -- 那覇市
+|           ...
+|           382.json  -- 八重山郡与那国町
++-- j                 -- 事業所データ
+    |   pref.json     -- 都道府県データ
+    +-- 01            -- 北海道
+    ...
+</pre>
+<p>
+  JSONデータのフォーマットは以下の通りです。
+  改行とインデントは、ここでの説明のために入れていますので、このとおりではありません。
+  値の無い項目は、キー値有りの空文字列ではなく、キー値も存在しない形にしています。
+</p>
+<p>住所データ:例: <code>/k/13/101.json</code></p>
+<pre>
+{
+  "p":{
+    "c":"13",
+    "n":"東京都"
+  },
+  "c":{
+    "c":"13101",
+    "n":"千代田区"
+  },
+  "a":[
+    {
+      "z":"1000000",
+      "r":"以下に掲載がない場合"
+    },
+    {
+      "z":"1020072",
+      "s":"飯田橋"
+    },
+    ...
+    {
+      "z":"1000004",
+      "s":"大手町",
+      "r":"次のビルを除く"
+    },
+    {
+      "z":"1006890",
+      "s":"大手町",
+      "b":"ＪＡビル",
+      "r":"階層不明"
+    },
+    {
+      "z":"1006890",
+      "s":"大手町",
+      "b":"ＪＡビル",
+      "f":"地階"
+    },
+    ...
+    {
+      "z":"1000003",
+      "s":"一ツ橋",
+      "n":"１丁目"
+    },
+    ...
+  ]
+}
+</pre>
+<p>事業所データ:例: <code>/j/13/101.json</code></p>
+<pre>
+{
+  "p":{
+    "c":"13",
+    "n":"東京都"
+  },
+  "c":{
+    "c":"13101",
+    "n":"千代田区"
+  },
+  "a":[
+    {
+      "z":"1008307",
+      "s":"丸の内",
+      "n":"２丁目１－１",
+      "j":"アコム　株式会社"
+    },
+    {
+      "z":"1008550",
+      "s":"内幸町",
+      "n":"１丁目１－１",
+      "j":"旭化成工業　株式会社"
+    },
+    ...
+  ]
+}
+</pre>
+<p>
+  都道府県データと市区町村データは以下の通りです。
+</p>
+<p>住所データ: <code>/k/pref.json</code>, 事業所データ: <code>/j/pref.json</code></p>
+<pre>
+{
+  "p01":"北海道",
+  ...
+  "p47":"沖縄県"
+}
+</pre>
+<p>住所データ:例: <code>/k/13/city.json</code>, 事業所データ:例: <code>/j/13/city.json</code></p>
+<pre>
+{
+  "c13101":"千代田区",
+  ...
+  "c13421":"小笠原村"
+}
+</pre>
+
+<a name="jz">
+<h3>JSON UTF-8 LF 読み無し 郵便番号別</h3>
+<p>文字コード: UTF-8</p>
+<p>改行コード: LF ( Unix )</p>
+<p>
+  郵便番号別のJSON形式のデータです。JSONについては
+  <a href="http://www.json.org/json-ja.html">http://www.json.org/json-ja.html</a> をご参照ください。
+</p>
+<p>
+  フォルダ ( ディレクトリ ) の構成は以下の通りです。
+  完全に郵便番号別のファイルにすると膨大なファイル数になり、利用環境によっては問題が起きると思われるため、
+  郵便番号の上 5桁が共通のものを 1個のファイルに格納しています。
+</p>
+<pre>
++-- k                 -- 住所データ
+|   |   pref.json     -- 都道府県データ
+|   +-- 01            -- 北海道
+|   |       city.json -- 北海道の市区町村データ
+|   |   ...
+|   +-- 47            -- 沖縄県
+|   |       city.json -- 沖縄県の市区町村データ
+|   +-- 001               -- 郵便番号 上 3桁
+|   |       00.json       -- 郵便番号 001-00..
+|   |       09.json       -- 郵便番号 001-09..
+|   |   ...
+|   +-- 999
+|           ...
++-- j                 -- 事業所データ
+    |   pref.json     -- 都道府県データ
+    +-- 01            -- 北海道
+    |   ...
+    +-- 001               -- 郵便番号 上 3桁
+        ...
+</pre>
+<p>
+  JSONデータのフォーマットは以下の通りです。
+  改行とインデントは、ここでの説明のために入れていますので、このとおりではありません。
+  値の無い項目は、キー値有りの空文字列ではなく、キー値も存在しない形にしています。
+</p>
+<p>住所データ:例: <code>/k/100/00.json</code></p>
+<pre>
+[
+  {
+    "z":"1000000",
+    "p":{
+      "c":"13",
+      "n":"東京都"
+    },
+    "c":{
+      "c":"13101",
+      "n":"千代田区"
+    },
+    "r":"以下に掲載がない場合"
+  },
+  ...
+  {
+    "z":"1000006",
+    "p":{
+      "c":"13",
+      "n":"東京都"
+    },
+    "c":{
+      "c":"13101",
+      "n":"千代田区"
+    },
+    "s":"有楽町"
+  }
+]
+</pre>
+<p>事業所データ:例: <code>/j/100/80.json</code></p>
+<pre>
+[
+  {
+    "z":"1008019",
+    "p":{
+      "c":"13",
+      "n":"東京都"
+    },
+    "c":{
+      "c":"13101",
+      "n":"千代田区"
+    },
+    "s":"内幸町",
+    "n":"１丁目１－６ＮＴＴ日比谷ビル",
+    "j":"エヌ・ティ・ティ・コミュニケーションズ　株式会社"
+  },
+  ...
+  {
+    "z":"1008088",
+    "p":{
+      "c":"13",
+      "n":"東京都"
+    },
+    "c":{
+      "c":"13101",
+      "n":"千代田区"
+    },
+    "s":"大手町",
+    "n":"１丁目４－２",
+    "j":"丸紅　株式会社"
+  }
+]
+</pre>
+<p>
+  都道府県データと市区町村データは "JSON UTF-8 LF 読み無し 自治体別" と同じです。
+</p>
+
+<a name="jb">
+<h3>JSON UTF-8 LF 読み無し 自治体別 短め</h3>
+<p>文字コード: UTF-8</p>
+<p>改行コード: LF ( Unix )</p>
+<p>住所データ:例: <code>/k/13/101.json</code></p>
+<p>
+  "JSON UTF-8 LF 読み無し 自治体別" から冗長なデータを省いて小容量にしたものです。
+</p>
+<p>住所データ:例: <code>/k/13/101.json</code></p>
+<pre>
+[
+  {
+    "z":"1000000",
+    "r":"以下に掲載がない場合"
+  },
+  {
+    "z":"1020072",
+    "s":"飯田橋"
+  },
+  ...
+  {
+    "z":"1000004",
+    "s":"大手町",
+    "r":"次のビルを除く"
+  },
+  {
+    "z":"1006890",
+    "s":"大手町",
+    "b":"ＪＡビル",
+    "r":"階層不明"
+  },
+  {
+    "z":"1006890",
+    "s":"大手町",
+    "b":"ＪＡビル",
+    "f":"地階"
+  },
+  ...
+  {
+    "z":"1000003",
+    "s":"一ツ橋",
+    "n":"１丁目"
+  },
+  ...
+]
+</pre>
+<p>事業所データ:例: <code>/j/13/101.json</code></p>
+<pre>
+[
+  {
+    "z":"1008307",
+    "s":"丸の内",
+    "n":"２丁目１－１",
+    "j":"アコム　株式会社"
+  },
+  {
+    "z":"1008550",
+    "s":"内幸町",
+    "n":"１丁目１－１",
+    "j":"旭化成工業　株式会社"
+  },
+  ...
+]
+</pre>
+<p>
+  都道府県データと市区町村データは "JSON UTF-8 LF 読み無し 自治体別" と同じです。
+</p>
+
+<a name="jy">
+<h3>JSON UTF-8 LF 読み無し 郵便番号別 短め</h3>
+<p>文字コード: UTF-8</p>
+<p>改行コード: LF ( Unix )</p>
+<p>
+  "JSON UTF-8 LF 読み無し 郵便番号別" から冗長なデータを省いて小容量にしたものです。
+</p>
+<p>住所データ:例: <code>/k/100/00.json</code></p>
+<pre>
+[
+  {
+    "z":"1000000",
+    "r":"以下に掲載がない場合"
+  },
+  ...
+  {
+    "z":"1000006",
+    "s":"有楽町"
+  }
+]
+</pre>
+<p>事業所データ:例: <code>/j/100/80.json</code></p>
+<pre>
+[
+  {
+    "z":"1008019",
+    "s":"内幸町",
+    "n":"１丁目１－６ＮＴＴ日比谷ビル",
+    "j":"エヌ・ティ・ティ・コミュニケーションズ　株式会社"
+  },
+  ...
+  {
+    "z":"1008088",
+    "s":"大手町",
+    "n":"１丁目４－２",
+    "j":"丸紅　株式会社"
+  }
+]
+</pre>
+<p>
+  都道府県データと市区町村データは "JSON UTF-8 LF 読み無し 自治体別" と同じです。
+</p>
+
+<a name="cr">
+<h2>著作権</h2>
+
+<a name="crd">
+<h3>データの著作権</h3>
 <p>
   当サイトが加工して配布するデータの元になる日本郵便株式会社配布の郵便番号データについては
-  <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a>
+  <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> と
+  <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a>
   の「使用・再配布・移植・改良について」をご参照ください。
 </p>
 <p>
   当サイトが加工して配布するデータの扱いも、日本郵便株式会社配布の郵便番号データに準じます。
 </p>
 
-<h2>プログラムの著作権</h2>
+<a name="crp">
+<h3>プログラムの著作権</h3>
 <p>
   当サイトのプログラムのソース・コードは
   <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache License Version 2.0</a>
-  により <a href="https://github.com/MichinobuMaeda/jpzipcode.git">https://github.com/MichinobuMaeda/jpzipcode.git</a>
+  により <a href="https://github.com/MichinobuMaeda/jpzipcode.git" target="_blank">https://github.com/MichinobuMaeda/jpzipcode.git</a>
   で公開しています。
 </p>
 
-<h2>当サイトで利用する著作物</h2>
+<a name="cra">
+<h3>当サイトで利用する著作物</h3>
 <p>
   Feed Icon <img src="/static/feed-icon-14x14.png" alt="Feed Icon" style="height: 14px; width: 14px;"> は、
   Mozilla Foundation の
@@ -36,6 +537,27 @@
   <a href="http://creativecommons.org/licenses/by/3.0/deed.en_US" target="_blank">Creative Commons Attribution 3.0 Unported License</a>
   により配布されています。詳細については <a href="http://www.webalys.com/minicons" target="_blank">Minicons</a>
   をご参照ください。
+</p>
+
+<a name="notice">
+<h2>免責事項</h2>
+<p>
+  jpzipcode ( 以下: "当サイト" ) の管理者は、当サイトおよび当サイトからの配布物について注意を払い編集しておりますが、
+  情報の正確性、有用性、確実性、安全性（機能が中断しないこと、エラーが発生しないこと、欠点を修正すること、
+  当サイトに関連しコンピュータウィルスその他の有害物がないこと等）、
+  適合性、合法性、最新性について、当サイトの管理者は、一切の保証を与えるものではありません。
+</p>
+<p>
+  また、利用者の皆様が当サイトに含まれる情報もしくはサービスを利用すること、
+  及び利用することができなかったことにより生じる直接的または間接的な損失に対し、
+  当サイトの管理者は一切責任を負うものではありません。
+</p>
+<p>
+  当サイトの管理者は予告なしに当サイト上の情報を変更することがあります。
+  同様に、予告なしに当サイトの運営を中断又は中止させていただくことがあります。 
+  なお、当サイトの管理者は、理由の如何に関わらず、
+  情報の変更及び運営の中断または中止により生じる利用者の皆様の直接的または間接的な損失に対しても、
+  一切責任を負うものではありません 。
 </p>
 
   </div>

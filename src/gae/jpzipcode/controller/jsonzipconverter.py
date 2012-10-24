@@ -51,10 +51,13 @@ class JsonZipConverter(JsonConverter):
         with zi.open(zip_info) as r:
             for line in r:
                 row = unicode(line.rstrip(), 'utf8').split(u'\t')
-                item = ['"z":"%(v)s"' % {'v':row[1]}]
+                city = row[0]
+                pref = city[:2]
                 z = row[1]
-                if row[0]:
-                    item.append('"c":"%(v)s"' % {'v':row[0]})
+                item = ['"z":"%(z)s"' % {'z':z}]
+                if not self.short:
+                    item.append('"p":{"c":"%(pc)s","n":"%(pn)s"}' % {'pc':pref, 'pn':self.prefs[pref]})
+                    item.append('"c":{"c":"%(cc)s","n":"%(cn)s"}' % {'cc':city, 'cn':self.cities[city]})
                 if row[2]:
                     item.append('"s":"%(v)s"' % {'v':row[2]})
                 if row[3]:
@@ -74,5 +77,11 @@ class JsonZipConverter(JsonConverter):
                     items[key] = []
                 items[key].append('{%(item)s}' % {'item':','.join(item)})
         for key in items.keys():
-            data = '[%(list)s]' % {'list':u','.join(items[key])}
+            data = '[\n%(list)s\n]' % {'list':u',\n'.join(items[key])}
             yield [key, data.encode('utf8')]
+
+class JsonZipShortConverter(JsonZipConverter):
+    
+    def __init__(self, task, cat):
+        JsonZipConverter.__init__(self, task, cat)
+        self.short = True
