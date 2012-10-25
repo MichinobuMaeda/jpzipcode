@@ -24,6 +24,7 @@ from jpzipcode.utils import tz
 from jpzipcode import model
 
 class SourceChecker(Task):
+    """日本郵便配布データ"""
     
     __headers = {'Cache-Control':'max-age=300'}
     

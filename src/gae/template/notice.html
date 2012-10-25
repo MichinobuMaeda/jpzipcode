@@ -5,18 +5,21 @@
 {% include 'header.html' %}
   <div id="content">
 
+{%- set ref_a = '<a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a>' %}
+{%- set ref_b = '<a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a>' %}
+
 <p class="attention">現在当サイトは、データの正確さ等について検証中作業です。</p>
 <ul>
   <li><a href="#fmt">フォーマット</a>
     <ul>
-      <li><a href="#uc">CSV UTF-8 CRLF</a></li>
-      <li><a href="#t1">Tab区切り UTF-8 LF</a></li>
-      <li><a href="#t2">Tab区切り UTF-8 LF 1レコード1行</a></li>
-      <li><a href="#t3">Tab区切り UTF-8 LF 説明事項等分離</a></li>
-      <li><a href="#ja">JSON UTF-8 LF 読み無し 自治体別</a></li>
-      <li><a href="#jz">JSON UTF-8 LF 読み無し 郵便番号別</a></li>
-      <li><a href="#jb">JSON UTF-8 LF 読み無し 自治体別 短め</a></li>
-      <li><a href="#jy">JSON UTF-8 LF 読み無し 郵便番号別 短め</a></li>
+      <li><a href="#uc">{{text['uc']}}</a></li>
+      <li><a href="#t1">{{text['t1']}}</a></li>
+      <li><a href="#t2">{{text['t2']}}</a></li>
+      <li><a href="#t3">{{text['t3']}}</a></li>
+      <li><a href="#ja">{{text['ja']}}</a></li>
+      <li><a href="#jz">{{text['jz']}}</a></li>
+      <li><a href="#jb">{{text['jb']}}</a></li>
+      <li><a href="#jy">{{text['jy']}}</a></li>
     </ul>
   </li>
   <li><a href="#cr">著作権</a>
@@ -33,7 +36,7 @@
 <h2>フォーマット</h2>
 
 <a name="uc">
-<h3>CSV UTF-8 CRLF</h3>
+<h3>{{text['uc']}}</h3>
 <p>文字コード: UTF-8</p>
 <p>改行コード: CR + LF ( Windows )</p>
 <p>
@@ -41,47 +44,41 @@
 </p>
 <p>
   カンマ "," で区切られた各項目についての説明は、
-  日本郵便の <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a>
-  と <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a>
-  をご参照ください。
+  日本郵便の {{ref_a}} と {{ref_b}} をご参照ください。
 </p>
 
 <a name="t1">
-<h3>Tab区切り UTF-8 LF</h3>
+<h3>{{text['t1']}}</h3>
 <p>文字コード: UTF-8</p>
 <p>改行コード: LF ( Unix )</p>
 <p>
-  "CSV UTF-8 CRLF" をタブ区切り形式に変換したものです。
+  "<a href="#uc">{{text['uc']}}</a>" をタブ区切り形式に変換したものです。
 </p>
 <p>
   タブ・コードで区切られた各項目についての説明は、
-  日本郵便の <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a>
-  と <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a>
-  をご参照ください。
+  日本郵便の {{ref_a}} と {{ref_b}} をご参照ください。
 </p>
 
 <a name="t2">
-<h3>Tab区切り UTF-8 LF 1レコード1行</h3>
+<h3>{{text['t2']}}</h3>
 <p>文字コード: UTF-8</p>
 <p>改行コード: LF ( Unix )</p>
 <p>
   日本郵便配布の住所データには、長いレコードを複数の行に格納したものがあります。
-  "Tab区切り UTF-8 LF" を基に、複数行に格納された論理的な 1レコードが 1行になるよう変換したものです。
-  事業所データは "Tab区切り UTF-8 LF" と同じものです。
+  "<a href="#t1">{{text['t1']}}</a>" を基に、複数行に格納された論理的な 1レコードが 1行になるよう変換したものです。
+  事業所データは "<a href="#t1">{{text['t1']}}</a>" と同じものです。
 </p>
 <p>
   タブ・コードで区切られた各項目についての説明は、
-  日本郵便の <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a>
-  と <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a>
-  をご参照ください。
+  日本郵便の {{ref_a}} と {{ref_b}} をご参照ください。
 </p>
 
 <a name="t3">
-<h3>Tab区切り UTF-8 LF 説明事項等分離</h3>
+<h3>{{text['t3']}}</h3>
 <p>文字コード: UTF-8</p>
 <p>改行コード: LF ( Unix )</p>
 <p>
-  "Tab区切り UTF-8 LF 1レコード1行" を基に、以下のような加工をしたものです。
+  "<a href="#t2">{{text['t2']}}</a>" を基に、以下のような加工をしたものです。
 </p>
 <ol>
   <li>都道府県と市区町村のデータを分離</li>
@@ -101,40 +98,30 @@
   <li>「4.」の読み</li>
   <li>「5.」の読み</li>
   <li>
-    一町域が二以上の郵便番号で表される場合の表示 :
-    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
-    <br>複数番号の有無 :
-    <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a> 参照
+    一町域が二以上の郵便番号で表される場合の表示 : {{ref_a}} 参照<br>
+    複数番号の有無 : {{ref_b}} 参照
   </li>
   <li>
-    小字毎に番地が起番されている町域の表示 :
-    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
+    小字毎に番地が起番されている町域の表示 : {{ref_a}} 参照
   </li>
   <li>
-    丁目を有する町域の場合の表示 :
-    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
+    丁目を有する町域の場合の表示 : {{ref_a}} 参照
   </li>
   <li>
-    一つの郵便番号で二以上の町域を表す場合の表示 :
-    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
+    一つの郵便番号で二以上の町域を表す場合の表示 : {{ref_a}} 参照
   </li>
   <li>
-    更新の表示 :
-    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
-    <br>修正コード :
-    <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a> 参照
+    更新の表示 : {{ref_a}} 参照<br>
+    修正コード : {{ref_b}} 参照
   </li>
   <li>
-    変更理由 :
-    <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> 参照
+    変更理由 : {{ref_a}} 参照
   </li>
   <li>
-    個別番号の種別の表示 :
-    <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a> 参照
+    個別番号の種別の表示 : {{ref_b}} 参照
   </li>
   <li>
-    取扱局（漢字） :
-    <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a> 参照
+    取扱局（漢字） : {{ref_b}} 参照
   </li>
 </ol>
 <p>都道府県データの項目は以下のようになります。</p>
@@ -151,7 +138,7 @@
 </ol>
 
 <a name="ja">
-<h3>JSON UTF-8 LF 読み無し 自治体別</h3>
+<h3>{{text['ja']}}</h3>
 <p>文字コード: UTF-8</p>
 <p>改行コード: LF ( Unix )</p>
 <p>
@@ -282,7 +269,7 @@
 </pre>
 
 <a name="jz">
-<h3>JSON UTF-8 LF 読み無し 郵便番号別</h3>
+<h3>{{text['jz']}}</h3>
 <p>文字コード: UTF-8</p>
 <p>改行コード: LF ( Unix )</p>
 <p>
@@ -385,16 +372,16 @@
 ]
 </pre>
 <p>
-  都道府県データと市区町村データは "JSON UTF-8 LF 読み無し 自治体別" と同じです。
+  都道府県データと市区町村データは "<a href="#ja">{{text['ja']}}</a>" と同じです。
 </p>
 
 <a name="jb">
-<h3>JSON UTF-8 LF 読み無し 自治体別 短め</h3>
+<h3>{{text['jb']}}</h3>
 <p>文字コード: UTF-8</p>
 <p>改行コード: LF ( Unix )</p>
 <p>住所データ:例: <code>/k/13/101.json</code></p>
 <p>
-  "JSON UTF-8 LF 読み無し 自治体別" から冗長なデータを省いて小容量にしたものです。
+  "<a href="#ja">{{text['ja']}}</a>" から冗長なデータを省いて小容量にしたものです。
 </p>
 <p>住所データ:例: <code>/k/13/101.json</code></p>
 <pre>
@@ -453,15 +440,15 @@
 ]
 </pre>
 <p>
-  都道府県データと市区町村データは "JSON UTF-8 LF 読み無し 自治体別" と同じです。
+  都道府県データと市区町村データは "<a href="#ja">{{text['ja']}}</a>" と同じです。
 </p>
 
 <a name="jy">
-<h3>JSON UTF-8 LF 読み無し 郵便番号別 短め</h3>
+<h3>{{text['jy']}}</h3>
 <p>文字コード: UTF-8</p>
 <p>改行コード: LF ( Unix )</p>
 <p>
-  "JSON UTF-8 LF 読み無し 郵便番号別" から冗長なデータを省いて小容量にしたものです。
+  "<a href="#jz">{{text['jz']}}</a>" から冗長なデータを省いて小容量にしたものです。
 </p>
 <p>住所データ:例: <code>/k/100/00.json</code></p>
 <pre>
@@ -496,7 +483,7 @@
 ]
 </pre>
 <p>
-  都道府県データと市区町村データは "JSON UTF-8 LF 読み無し 自治体別" と同じです。
+  都道府県データと市区町村データは "<a href="#ja">{{text['ja']}}"</a> と同じです。
 </p>
 
 <a name="cr">
@@ -506,9 +493,7 @@
 <h3>データの著作権</h3>
 <p>
   当サイトが加工して配布するデータの元になる日本郵便株式会社配布の郵便番号データについては
-  <a href="http://www.post.japanpost.jp/zipcode/dl/readme.html" target="_blank">郵便番号データの説明</a> と
-  <a href="http://www.post.japanpost.jp/zipcode/dl/jigyosyo/readme.html" target="_blank">大口事業所個別番号データの説明</a>
-  の「使用・再配布・移植・改良について」をご参照ください。
+  {{ref_a}} と {{ref_b}} の「使用・再配布・移植・改良について」をご参照ください。
 </p>
 <p>
   当サイトが加工して配布するデータの扱いも、日本郵便株式会社配布の郵便番号データに準じます。

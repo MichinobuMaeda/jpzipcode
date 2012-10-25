@@ -18,6 +18,7 @@ import csv
 from jpzipcode.controller.task import Task
 
 class Tsv1Converter(Task):
+    """Tab区切り UTF-8 LF"""
     
     def __init__(self, task, cat):
         Task.__init__(self, task, cat)
@@ -30,6 +31,3 @@ class Tsv1Converter(Task):
                 lines.append(u'\t'.join(unicode(row, 'utf8') for row in line))
             lines.append('')
         yield ['t1_%(cat)s.txt' % {'cat':self.get_cat(),},u'\n'.join(lines).encode('utf8')]
-
-    def get_ext(self):
-        return 'txt'

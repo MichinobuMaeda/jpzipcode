@@ -30,6 +30,7 @@ from jpzipcode.model import Params, Status, Release
 from jpzipcode.utils import tz
 
 class JobKicker(common.BasePage):
+    """ジョブ実行"""
     
     # Jobクラス
     __jobs = {

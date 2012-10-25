@@ -24,11 +24,8 @@ from google.appengine.ext import blobstore
 from google.appengine.ext import db
 from jpzipcode.utils import tz
 
-class StatusStore(db.Model):
-    """ステータスの永続データ"""
-    seri = db.TextProperty()
-
 class Params():
+    """設定"""
 
     __param = None
     
@@ -41,6 +38,13 @@ class Params():
             return self.__param[cat]
         else:
             return self.__param[cat][name]
+
+class StatusStore(db.Model):
+    """
+    ステータスの永続データ
+        ステータスのキー：値をJSON形式にシリアライズして格納する。
+    """
+    seri = db.TextProperty()
 
 class Status():
     """ステータス"""
@@ -66,18 +70,22 @@ class Status():
         self.__stts = json.loads(seri)
     
     def get_key_name(self):
+        """データストアに格納するためのキー値を取得する。"""
         return 'status'
     
     def get(self, name):
+        """値を取得する。"""
         if name not in self.__stts:
             return None
         return self.__stts[name]
     
     def set(self, name, val):
+        """値を設定する。"""
         self.__stts[name] = val
         self.__update()
     
     def get_list(self):
+        """リスト形式で全ての値を取得する。並び順は設定に従う。"""
         arr = []
         for name in Params().get('param_names'):
             if name in self.__stts:
@@ -87,6 +95,7 @@ class Status():
         return arr
     
     def get_map(self):
+        """ディクショナリ形式で全ての値を取得する。"""
         param = {}
         for item in self.get_list():
             key = item[0]
@@ -98,17 +107,22 @@ class Status():
         return param
 
     def merge(self, stts):
+        """キー：値のセットをマージする。"""
         for key in stts.keys():
             self.__stts[key] = stts[key]
         self.__update()
 
-    def clear(self, last_mod):
+    def clear(self):
+        """値を初期化する。"""
         for key in self.__stts.keys():
             self.__stts[key] = ''
-        self.__stts['last_mod'] = last_mod
         self.__update()
 
     def __update(self):
+        """
+        値をデータストアに格納する。
+            値が空の場合は初期値を設定する。
+        """
         self.__init_param()
         store = StatusStore.get_by_key_name(key_names=self.get_key_name())
         store.seri = json.dumps(self.__stts, ensure_ascii=False)
@@ -116,6 +130,10 @@ class Status():
         self.__cli.cas(self.get_key_name(), store.seri)
 
     def __init_param(self):
+        """
+        空の値に初期値を設定する。
+            初期値は設定の param_ini または param_ini_test
+        """
         if self.__is_test:
             initparam = Params().get('param_ini_test')
         else:
@@ -125,8 +143,28 @@ class Status():
             if key not in self.__stts or self.__stts[key] == '':
                 self.__stts[key] = initparam[key]
 
+class Release(Status):
+    """リリース物のステータス"""
+
+    def __init__(self, is_test=False):
+        Status.__init__(self, is_test)
+    
+    def get_key_name(self):
+        """データストアに格納するためのキー値を取得する。"""
+        return 'release'
+    
+    def reflesh(self):
+        """ステータスを反映する。"""
+        stts = {}
+        for item in Status().get_list():
+            key = item[0]
+            val = item[1]
+            stts[key] = val
+        self.merge(stts)
+
 def save_blob(data, filename, mimetype='application/zip'):
-    """Blobstore にデータを保存する。
+    """
+    Blobstore にデータを保存する。
     Args:
         data: データ
         filename: ファイル名
@@ -139,20 +177,3 @@ def save_blob(data, filename, mimetype='application/zip'):
         f.write(data)
     files.finalize(blob_filename)
     return str(files.blobstore.get_blob_key(blob_filename))
-
-class Release(Status):
-    """リリース物のステータス"""
-
-    def __init__(self, is_test=False):
-        Status.__init__(self, is_test)
-    
-    def get_key_name(self):
-        return 'release'
-    
-    def reflesh(self):
-        stts = {}
-        for item in Status().get_list():
-            key = item[0]
-            val = item[1]
-            stts[key] = val
-        self.merge(stts)

@@ -27,6 +27,3 @@ class Utf8Converter(Task):
             for line in r:
                 lines.append(unicode(line, 'ms932'))
         yield ['uc_%(cat)s.csv' % {'cat':self.get_cat(),},u''.join(lines).encode('utf8')]
-
-    def get_ext(self):
-        return 'csv'

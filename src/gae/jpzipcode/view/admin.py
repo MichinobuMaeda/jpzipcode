@@ -24,7 +24,7 @@ class AdminMainPage(common.BasePage):
     def get(self):
         is_test = self.get_host_port().startswith('localhost:')
         if 'clear' in self.request.arguments():
-            Status(is_test).clear(tz.nowjststr())
+            Status(is_test).clear()
             self.redirect(self.request.path)
         else:
             self.show('admin_main.html', {
@@ -36,7 +36,7 @@ class AdminMainPage(common.BasePage):
         is_test = self.get_host_port().startswith('localhost:')
         stts = {}
         if 'clear' in self.request.arguments():
-            Status(is_test).clear(tz.nowjststr())
+            Status(is_test).clear()
         else:
             for name in self.request.arguments():
                 stts[name] = self.request.get(name, default_value='')

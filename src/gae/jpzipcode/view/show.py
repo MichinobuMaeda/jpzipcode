@@ -30,7 +30,9 @@ class ShowMainPage(common.BasePage):
 class NoticePage(common.BasePage):
 
     def get(self):
-        self.show('notice.html', {})
+        self.show('notice.html', {
+            'text':Params().get('view'),
+        })
 
 app = webapp2.WSGIApplication([
     ('/', ShowMainPage),

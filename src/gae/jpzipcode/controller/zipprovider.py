@@ -19,6 +19,7 @@ from google.appengine.ext import blobstore
 from jpzipcode.model import Status
 
 class ZipProvider(webapp2.RequestHandler):
+    """生成物の出力"""
 
     def get(self):
         filename = self.request.path.replace('/download/', '')

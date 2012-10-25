@@ -19,7 +19,7 @@ from jpzipcode.model import Params, Release
 from jpzipcode.view import common
 from jpzipcode.utils import tz
 
-class FeedRssPage(common.BasePage):
+class FeedRss(common.BasePage):
 
     def get(self):
         stts = Release()
@@ -34,4 +34,4 @@ class FeedRssPage(common.BasePage):
             }
         }, 'application/rss+xml')
 
-app = webapp2.WSGIApplication([('/feed.rss', FeedRssPage)])
+app = webapp2.WSGIApplication([('/feed.rss', FeedRss)])

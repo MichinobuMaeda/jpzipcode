@@ -17,6 +17,7 @@
 from jpzipcode.controller.jsonconverter import JsonConverter
 
 class JsonAreaConverter(JsonConverter):
+    """JSON UTF-8 LF 読み無し 自治体別"""
     
     def __init__(self, task, cat):
         JsonConverter.__init__(self, task, cat)
@@ -93,6 +94,7 @@ class JsonAreaConverter(JsonConverter):
             }
 
 class JsonAreaShortConverter(JsonAreaConverter):
+    """JSON UTF-8 LF 読み無し 自治体別 短め"""
 
     def __init__(self, task, cat):
         JsonAreaConverter.__init__(self, task, cat)

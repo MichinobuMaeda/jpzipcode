@@ -21,6 +21,7 @@ from google.appengine.ext import blobstore
 from jpzipcode.model import Params, Status, save_blob
 
 class Task():
+    """タスク"""
     
     __tsk = None
     __cat = None
@@ -32,15 +33,19 @@ class Task():
         self.__stt = Status()
 
     def get_task(self):
+        """タスク名を取得する。"""
         return self.__tsk
     
     def get_cat(self):
+        """分類(住所/事業所)を取得する。"""
         return self.__cat
     
     def get_prev(self):
+        """データのインプットになるタスク名を取得する。"""
         return Params().get('job_prv', self.__tsk)
         
     def __get_key(self, name):
+        """ステータスのキーを取得する。"""
         return '%(nam)s_%(tsk)s_%(cat)s' % {
             'nam':name,
             'tsk':self.__tsk,
@@ -48,6 +53,7 @@ class Task():
         }
         
     def __get_key_prev(self, name):
+        """インプットデータのステータスのキーを取得する。"""
         return '%(nam)s_%(prv)s_%(cat)s' % {
             'nam':name,
             'prv':self.get_prev(),
@@ -55,27 +61,34 @@ class Task():
         }
         
     def get_ts(self):
+        """日本郵便配布データのタイムスタンプを取得する。"""
         return self.__stt.get('ts_ar_%(cat)s' % {'cat':self.__cat})
 
     def get_ts_short(self):
+        """日本郵便配布データのタイムスタンプを短い書式で取得する。"""
         return self.get_ts().replace('-', '').replace(':', '').replace(' ', '')[0:8]
     
     def get_stt(self, name):
+        """ステータスを取得する。"""
         return self.__stt.get(self.__get_key(name))
         
     def get_stt_prev(self, name):
+        """インプットデータのステータスを取得する。"""
         return self.__stt.get(self.__get_key_prev(name))
 
     def set_stt(self, stt):
+        """ステータスを設定する。"""
         dic = {}
         for key in stt.keys():
             dic[self.__get_key(key)] = stt[key]
         self.__stt.merge(dic)
     
     def kick(self):
+        """処理を実行する。"""
         return self.convert()
     
     def convert(self):
+        """データ変換処理を実行する。"""
         stts = {}
         key = self.get_stt_prev('key')
         blob_info = blobstore.BlobInfo(blobstore.BlobKey(key))
@@ -104,7 +117,9 @@ class Task():
         self.set_stt(stts)
         return 'ok'
 
+    # can be overidden
     def proc_all(self, zi, zo, stts):
+        """全てのインプットを処理する。"""
         dsz = 0
         cnt = 0
         for zip_info in zi.infolist():
@@ -117,8 +132,5 @@ class Task():
     
     # to be overidden
     def proc(self, zi, zip_info):
-        pass
-    
-    # to be overidden
-    def get_ext(self):
+        """1個のインプットを処理する。"""
         pass

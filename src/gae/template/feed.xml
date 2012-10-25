@@ -20,11 +20,22 @@
       <title>{{task}}_{{cat}}: {{text[cat]}} {{text[task]}}</title>
       <link>{{ base_url }}download/{{task}}_{{cat}}-{{ts_source}}.zip</link>
       <description><![CDATA[
-配布元生成日時: {{stts['ts_ar_' + cat]}}<br>
-生成物更新日時: {{stts['upd_' + cat]}}<br>
-サイズ: {{stts['csz_' + task + '_' + cat]}} byte<br>
-SHA1: {{stts['dig_' + task + '_' + cat]}}<br>
-解凍後: {{stts['cnt_' + task + '_' + cat]}} ファイル 計 {{stts['dsz_' + task + '_' + cat]}} byte
+<div id="{{'ts_ar_' + cat}}">
+  配布元生成日時: {{stts['ts_ar_' + cat]}}
+</div>
+<div id="{{'upd_' + cat}}">
+  生成物更新日時: {{stts['upd_' + cat]}}
+</div>
+<div id="{{'csz_' + task + '_' + cat}}">
+  サイズ: {{stts['csz_' + task + '_' + cat]}} byte
+</div>
+<div id="{{'dig_' + task + '_' + cat}}">
+  SHA1: {{stts['dig_' + task + '_' + cat]}}
+</div>
+<div>
+  <span id="{{'cnt_' + task + '_' + cat}}">解凍後: {{stts['cnt_' + task + '_' + cat]}} ファイル</span>
+  <span id="{{'dsz_' + task + '_' + cat}}">計 {{stts['dsz_' + task + '_' + cat]}} byte</span>
+</div>
       ]]></description>
       <pubDate>{{pub_date[cat]}}</pubDate>
       <guid>{{ base_url }}download/{{task}}_{{cat}}-{{ts_source}}.zip#{{stts['dig_' + task + '_' + cat]}}</guid>

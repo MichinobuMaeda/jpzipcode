@@ -17,6 +17,7 @@
 from jpzipcode.controller.task import Task
 
 class Tsv3Converter(Task):
+    """Tab区切り UTF-8 LF 説明事項等分離"""
     
     def __init__(self, task, cat):
         Task.__init__(self, task, cat)
@@ -209,6 +210,3 @@ class Tsv3Converter(Task):
                 ]))
         lines.append('')
         return u'\n'.join(lines).encode('utf8')
-
-    def get_ext(self):
-        return 'txt'

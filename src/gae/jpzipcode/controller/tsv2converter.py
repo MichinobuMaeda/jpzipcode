@@ -17,6 +17,7 @@
 from jpzipcode.controller.task import Task
 
 class Tsv2Converter(Task):
+    """Tab区切り UTF-8 LF 1レコード1行"""
     
     def __init__(self, task, cat):
         Task.__init__(self, task, cat)
@@ -57,6 +58,3 @@ class Tsv2Converter(Task):
     
     def __proc_j(self, zi, zip_info):
         return zi.read(zip_info)
-
-    def get_ext(self):
-        return 'txt'

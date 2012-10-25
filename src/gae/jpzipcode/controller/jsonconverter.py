@@ -18,6 +18,7 @@ import zipfile
 from jpzipcode.controller.task import Task
 
 class JsonConverter(Task):
+    """JSON UTF-8 LF 読み無し"""
     
     prefs = None
     cities = None
