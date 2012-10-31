@@ -1,4 +1,4 @@
-body, div, p, th, td, dl, dt, dd, form, input, text, select, option,
+body, div, p, th, td, dl, dt, dd, form, input, textarea, select, option,
 h1, h2, h3, h4, h5, h6 {
   font-size: 100%;
   font-family: Verdana, Geneva, sans-serif;
@@ -110,6 +110,7 @@ h3 {
   width: 7em;
   text-align: right;
   font-family: "Lucida Console", Monaco, monospace;
+  vertical-align: top;
 }
 .param_val {
   width: 48em;
@@ -148,4 +149,17 @@ code {
 .attention {
   color: red;
   font-size: 160%;
+}
+#s1zip {
+  width: 6em;
+}
+#s1city, #s1add1, #s1add2, #s1bldg {
+  width: 32em;
+}
+#s1note {
+  width: 32em;
+  height: 3em;
+}
+#s1duparea {
+  visibility: hidden;
 }

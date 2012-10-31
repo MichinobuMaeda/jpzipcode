@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <head>
+  <link href="/static/common.css" type="text/css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+  <link rel="alternate" type="application/rss+xml" title="jpzipcode" href="/feed.rss">
+  <script src="sample1.js" type="text/javascript"></script>
+  <title>サンプル - jpzipcode</title>
+</head>
+</head>
+<body onload="s1Init()">
+  <div id="header">
+    <h1>jpzipcode</h1>
+    <a class="link" href="http://jpzipcode.appspot.com/"><img src="/static/logo_r.png" alt="logo" id="logo"> 配布</a>
+    <a href="http://jpzipcode.appspot.com/notice.html" class="link"><img src="/static/book_r.png" alt="説明"> 説明</a>
+    <span class="selected"><img src="/static/pencil.png" alt="用例"> 用例</span>
+    <a href="http://jpzipcode.appspot.com/admin/" class="link"><img src="/static/lock_r.png" alt="管理"> 管理</a>
+  </div>
+  <div id="content">
+
+<p class="attention">現在当サイトは、データの正確さ等について検証中作業です。</p>
+
+<h2>サンプル１</h2>
+<p>郵便番号を入力すると、対応する住所を自動で記入します。以下の例をコピペして使ってください。</p>
+<ul>
+  <li>1000000: 東京都 千代田区 ※以下に掲載が無い場合</li>
+  <li>1010001: 対応する住所無し。</li>
+  <li>1010003: 東京都 千代田区 一ツ橋 ２丁目</li>
+  <li>1018001: 東京都 千代田区 一ツ橋 ２丁目３－１ 株式会社　小学館</li>
+  <li>1006890:
+    <ul>
+      <li>東京都 千代田区 大手町 ＪＡビル ※階層不明</li>
+      <li>東京都 千代田区 大手町 ＪＡビル 地階</li>
+    </ul>
+  </li>
+</ul>
+<form id="s1" name="s1" action="./" method="get" onsubmit="return false">
+  <div>
+    <span class="param_name">郵便番号:</span>
+    <input id="s1zip" type="text" style="ime-mode:inactive;" onkeyup="s1GetAddress()">
+    ※ ハイフン "-" 無しで数字だけを入力してください。
+  </div>
+  <div>
+    <span class="param_name">都道府県:</span>
+    <select id="s1pref">
+    </select>
+  </div>
+  <div>
+    <span class="param_name">市区町村:</span>
+    <input id="s1city" type="text">
+  </div>
+  <div>
+    <span class="param_name">住所１:</span>
+    <input id="s1add1" type="text">
+  </div>
+  <div>
+    <span class="param_name">住所２:</span>
+    <input id="s1add2" type="text">
+  </div>
+  <div>
+    <span class="param_name">事業所名:</span>
+    <input id="s1bldg" type="text">
+  </div>
+  <div>
+    <span class="param_name">備考:</span>
+    <textarea id="s1note" readonly="readonly"></textarea>
+  </div>
+  <div id="s1duparea">
+    <span class="param_name">複数該当:</span>
+    <select id="s1dup" onchange="s1SetSelectedData()">
+      <option>--</option>
+    </select>
+  </div>
+</form>
+
+<h2>サンプル２</h2>
+<p>以下、作成中。</p>
+
+  </div>
+    <div id="footer">
+    <img src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" id="gaelogo">
+    <a href="http://sites.google.com/site/michinobumaeda/">Michinobu Maeda</a>
+  </div>
+</body>
+</html>

@@ -21,9 +21,8 @@ from jpzipcode.view import common
 class ShowMainPage(common.BasePage):
 
     def get(self):
-        is_test = self.get_host_port().startswith('localhost:')
         self.show('show_main.html', {
-            'stts':Release(is_test).get_map(),
+            'stts':Release(self.is_test()).get_map(),
             'text':Params().get('view'),
         })
 

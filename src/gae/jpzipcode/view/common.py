@@ -18,6 +18,7 @@ import os
 from urlparse import urlparse
 import webapp2
 import jinja2
+from jpzipcode.model import Params
 
 class BasePage(webapp2.RequestHandler):
 
@@ -37,6 +38,11 @@ class BasePage(webapp2.RequestHandler):
         return self.get_url().scheme + "://" + self.get_host_port() + "/"
 
     def show(self, template_name, template_values, mime_type='text/html'):
+        if self.is_test():
+            sample_url = Params().get('sample_url', 'test')
+        else:
+            sample_url = Params().get('sample_url', 'active')
+        template_values['sample_url'] = sample_url
         jinja_environment = jinja2.Environment(
             loader=jinja2.FileSystemLoader(os.path.join(
                 os.path.dirname(__file__), "..", "..", "template")))
@@ -47,3 +53,6 @@ class BasePage(webapp2.RequestHandler):
     def ret_text(self, text):
         self.response.headers['Content-Type'] = 'text/plain'
         self.response.out.write(text)
+    
+    def is_test(self):
+        return self.get_host_port().startswith('localhost:')

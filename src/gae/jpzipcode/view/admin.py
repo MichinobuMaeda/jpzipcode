@@ -22,26 +22,24 @@ from jpzipcode.utils import tz
 class AdminMainPage(common.BasePage):
 
     def get(self):
-        is_test = self.get_host_port().startswith('localhost:')
         if 'clear' in self.request.arguments():
-            Status(is_test).clear()
+            Status(self.is_test()).clear()
             self.redirect(self.request.path)
         else:
             self.show('admin_main.html', {
-            'stts':Status(is_test).get_list(),
-            'text':Params().get('view'),
+                'stts':Status(self.is_test()).get_list(),
+                'text':Params().get('view'),
         })
 
     def post(self):
-        is_test = self.get_host_port().startswith('localhost:')
         stts = {}
         if 'clear' in self.request.arguments():
-            Status(is_test).clear()
+            Status(self.is_test()).clear()
         else:
             for name in self.request.arguments():
                 stts[name] = self.request.get(name, default_value='')
             stts['last_mod'] = tz.nowjststr()
-            Status(is_test).merge(stts)
+            Status(self.is_test()).merge(stts)
         self.redirect(self.request.url)
 
 app = webapp2.WSGIApplication([('/admin/', AdminMainPage)])

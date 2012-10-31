@@ -24,25 +24,24 @@ class JsonZipConverter(JsonConverter):
     
     def proc(self, zi, zip_info):
         if zip_info.filename.startswith('tp'):
-            yield ['%(cat)s/pref.json' % {
+            yield ['pref.json' % {
                     'cat':self.get_cat()
                 },
                 self.proc_pref(zi, zip_info)
             ]
         elif zip_info.filename.startswith('tc'):
             for row in self.proc_city(zi, zip_info):
-                yield ['%(cat)s/%(pref)s/city.json' % {
-                        'cat':self.get_cat(),
-                        'pref':row[0]
+                yield ['%(pref)s/city.json' % {
+                        'pref':row[0],
                     },
                     row[1]
                 ]
         elif zip_info.filename.startswith('t3'):
             for row in self.__proc_zip(zi, zip_info):
-                yield ['%(cat)s/%(z1)s/%(z2)s.json' % {
+                yield ['%(z1)s/%(z2)s.json' % {
                         'cat':self.get_cat(),
                         'z1':row[0][:3],
-                        'z2':row[0][3:]
+                        'z2':row[0][3:],
                     },
                     row[1]
                 ]
@@ -57,8 +56,8 @@ class JsonZipConverter(JsonConverter):
                 z = row[1]
                 item = ['"z":"%(z)s"' % {'z':z}]
                 if not self.short:
-                    item.append('"p":{"c":"%(pc)s","n":"%(pn)s"}' % {'pc':pref, 'pn':self.prefs[pref]})
-                    item.append('"c":{"c":"%(cc)s","n":"%(cn)s"}' % {'cc':city, 'cn':self.cities[city]})
+                    item.append('"pc":"%(pc)s","pn":"%(pn)s"' % {'pc':pref, 'pn':self.prefs[pref]})
+                    item.append('"cc":"%(cc)s","cn":"%(cn)s"' % {'cc':city, 'cn':self.cities[city]})
                 if row[2]:
                     item.append('"s":"%(v)s"' % {'v':row[2]})
                 if row[3]:

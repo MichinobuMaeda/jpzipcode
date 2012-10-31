@@ -85,7 +85,7 @@ class JsonAreaConverter(JsonConverter):
                 'list':u',\n'.join(lines),
             }
         else:
-            return '{"p":{"c":"%(pc)s","n":"%(pn)s"},"c":{"c":"%(cc)s","n":"%(cn)s"},"a":[\n%(list)s\n]}' % {
+            return '{"pc":"%(pc)s","pn":"%(pn)s","cc":"%(cc)s","cn":"%(cn)s","a":[\n%(list)s\n]}' % {
                 'pc':city[:2],
                 'pn':self.prefs[city[:2]],
                 'cc':city,

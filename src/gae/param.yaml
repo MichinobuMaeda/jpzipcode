@@ -139,8 +139,18 @@ param_ini_test:
   url_pg_j: http://localhost:8999/jig.html
   url_ar_j: http://localhost:8999/jigyosyo.zip
 
-# Job の実行順序
-job_succ:
+# ジョブの実行順序
+job_seq:
+  k: j
+  j: null
+
+# ジョブの最初のタスク
+first_task:
+  k: pg
+  j: pg
+
+# タスクの実行順序
+task_seq:
   pg: ar
   ar: uc
   uc: t1
@@ -152,8 +162,8 @@ job_succ:
   jb: jy
   jy: null
 
-# Jobの依存関係
-job_prv:
+# タスクの依存関係
+task_prv:
   pg: null
   ar: pg
   uc: ar
@@ -164,6 +174,11 @@ job_prv:
   jz: t3
   jb: t3
   jy: t3
+
+# タスクのインターバル
+task_interval:
+  active: 30
+  test: 1
 
 # View
 view:
@@ -190,3 +205,8 @@ view:
   jz: JSON UTF-8 LF 読み無し 郵便番号別
   jb: JSON UTF-8 LF 読み無し 自治体別 短め
   jy: JSON UTF-8 LF 読み無し 郵便番号別 短め
+
+# サンプルのURL
+sample_url:
+  active: http://zip.michinobu.jp/demo/
+  test: http://localhost:8999/demo/

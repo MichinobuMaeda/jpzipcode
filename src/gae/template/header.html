@@ -6,9 +6,14 @@
     <span class="selected"><img src="/static/logo.png" alt="logo" id="logo"> 配布</span>
     {%- endif %}
     {% if title == '説明' -%}
-    <span class="selected"><img src="/static/pencil.png" alt="説明"> 説明</span>
+    <span class="selected"><img src="/static/book.png" alt="説明"> 説明</span>
     {%- else -%}
-    <a href="/notice.html" class="link"><img src="/static/pencil_r.png" alt="説明"> 説明</a>
+    <a href="/notice.html" class="link"><img src="/static/book_r.png" alt="説明"> 説明</a>
+    {%- endif %}
+    {% if title == '用例' -%}
+    <span class="selected"><img src="/static/pencil.png" alt="用例"> 用例</span>
+    {%- else -%}
+    <a href="{{sample_url}}" class="link"><img src="/static/pencil_r.png" alt="説明"> 用例</a>
     {%- endif %}
     {% if title == '管理' -%}
     <span class="selected"><img src="/static/lock.png" alt="管理"> 管理</span>

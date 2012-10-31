@@ -42,7 +42,7 @@ class Task():
     
     def get_prev(self):
         """データのインプットになるタスク名を取得する。"""
-        return Params().get('job_prv', self.__tsk)
+        return Params().get('task_prv', self.__tsk)
         
     def __get_key(self, name):
         """ステータスのキーを取得する。"""

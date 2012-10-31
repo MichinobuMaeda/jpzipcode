@@ -6,4 +6,7 @@
 .pydevproject
 .settings
 test/site/wk
+test/site/data
+test/site/static
+test/site/demo
 test/log/*.bak
